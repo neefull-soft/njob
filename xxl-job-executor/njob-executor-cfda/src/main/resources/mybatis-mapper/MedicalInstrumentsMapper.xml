@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.job.executor.service.jobhandler.dao.MedicalInstrumentsDao">
+
+    <update id="updateYlqxUploadState">
+        update ${tableName}
+        <set>
+            <if test="flag != null">UP_STATE=#{flag},</if>
+            <if test="udate != null">UPLOAD_TIME=#{udate},</if>
+            <if test="errinfo != null">ERR_COMMENTS=#{errinfo}</if>
+        </set>
+        where SQID=#{sqid}
+    </update>
+
+    <update id="updateYlqxJCUploadState">
+        update T_API_YLQXSCQYJC_RWSJBXX
+        <set>
+            <if test="flag != null">UP_STATE=#{flag},</if>
+            <if test="udate != null">UPLOAD_TIME=#{udate},</if>
+            <if test="errinfo != null">ERR_COMMENTS=#{errinfo}</if>
+        </set>
+        where ZJ=#{sqid}
+    </update>
+
+    <select id="getUnUploadYlqxSqId" parameterType="String" resultType="String">
+        select SQID from ${tableName} where SQID is not NULL and UP_STATE <![CDATA[ <> ]]> '1' or UP_STATE is null
+    </select>
+
+    <!-- 医疗器械生产许可（备案） -->
+    <select id="getYlqxscxkBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxscxk">
+        select t.* from T_API_JQYLQXJG_YLQXSCXK t where t.SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械生产许可（备案）- 子表 产品列表 -->
+    <select id="getgetYlqxscxkCpZbBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxscxkCpZb">
+        select ZZJGDM ZZJGDM,CPMC CPMC,ZCZH ZCZH,CPLB CPLB,SFSTSC SFSTSC,WTQX WTQX,DZRQ DZRQ,BZ BZ
+        from T_API_JQYLQXJG_YLQXSCXK_CPZB where SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械经营许可（备案） -->
+    <select id="getYlqxjyxkBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjyxk">
+        select t.* from T_API_JQYLQXJG_YLQXJYXK t where t.SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械委托生产备案 -->
+    <select id="getYlqxwtscbaBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwtscba">
+        select t.* from T_API_JQYLQXJG_YLQXWTSCBA t where t.SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械委托生产备案 - 子表 产品列表 -->
+    <select id="getYlqxwtscbaCpZbBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwtscbaCpZb">
+        select t.* from T_API_JQYLQXJG_YLQXWTSCBA_WTZB t where t.SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械网络交易服务第三方平台备案 -->
+    <select id="getYlqxwljyfwdsfBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwljyfwdsf">
+        select QYMC,SHXYDM,BABH,ZS,BGCS,FDDBR,ZYFZR,ZLAQGLR,WZMC,WLKHDYYCXM,concat('<![CDATA[',concat(WZYM,']]>')) WZYM,
+        WZDZ_IP,concat('<![CDATA[',concat(FWQCFDZ,']]>')) FWQCFDZ,FJYXHLWXXFWBABH,QYSZS,BABM,BARQ,BZ
+        from T_API_JQYLQXJG_YLQXWLJYFWDSF where SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械网络销售备案 -->
+    <select id="getYlqxwlxsbaBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwlxsba">
+        select WLXSLX,QYMC,SHXYDM,ZS,JYCS,KFDZ,ZTYT,XKZBH,HLWYPXXFWZGZSBH,JYFW,FDDBR,QYFZR,QYSZS,WZMC,WLKHDYYCXM,concat('<![CDATA[',concat(WZYM,']]>')) WZYM,
+        WZDZ_IP,concat('<![CDATA[',concat(FWQCFDZ,']]>')) FWQCFDZ,FJYXHLWXXFWBABH,BZ
+        from T_API_JQYLQXJG_YLQXWLXSBA where SQID=#{sqId}
+    </select>
+
+    <!-- 医疗器械网络销售备案 - 子表 入驻类第三方平台信息 -->
+    <select id="getYlqxwlxsbaDsfZbBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwlxsbaDsfZb">
+        select t.* from T_API_JQYLQXJG_YLQXWLXSBA_SFZB t where t.SQID=#{sqId}
+    </select>
+
+    <!-- ******************************************************************************** -->
+
+    <!-- 任务书基本信息 -->
+    <select id="getYlqxjcRwsjbxxLst" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjcRwsjbxx">
+          select t.* from T_API_YLQXSCQYJC_RWSJBXX t where t.ZJ is not NULL and t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null
+    </select>
+
+    <!-- 检查产品信息 -->
+    <select id="getYlqxjcJccpxxByRwsbh" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjcJccpxx">
+        select t.* from T_API_YLQXSCQYJC_JCCPXX t where t.RWSBH = #{rwsbh}
+    </select>
+
+    <!-- 任务检查项明细 -->
+    <select id="getYlqxjcJcxByRwsbh" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjcJcx">
+        select t.* from T_API_YLQXSCQYJC_JCX t where t.RWSBH = #{rwsbh}
+    </select>
+
+    <!-- 任务检查组信息 -->
+    <select id="getYlqxjcJczByRwsbh" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjcJcz">
+        select t.* from T_API_YLQXSCQYJC_JCZ t where t.RWSBH = #{rwsbh}
+    </select>
+</mapper>

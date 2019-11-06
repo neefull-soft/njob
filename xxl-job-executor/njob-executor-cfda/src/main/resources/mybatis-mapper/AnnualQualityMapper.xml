@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.job.executor.service.jobhandler.dao.AnnualQualityDao">
+
+    <resultMap id="ZcbgResultMap" type="com.xxl.job.executor.service.jobhandler.model.YlqxscqyNdzltxZcbg">
+        <result column="years" property="Years"></result>
+        <result column="company_name" property="CompanyName"></result>
+        <result column="org_code" property="OrgCode"></result>
+        <result column="permit_no" property="PermitNo"></result>
+        <result column="area" property="Area"></result>
+        <result column="permit_no2" property="PermitNo2"></result>
+        <result column="manage_category" property="ManageCategory"></result>
+        <result column="one_one" property="One_one"></result>
+        <result column="one_two" property="One_two"></result>
+        <result column="one_three" property="One_three"></result>
+        <result column="two_one" property="Two_one"></result>
+        <result column="two_two" property="Two_two"></result>
+        <result column="two_three" property="Two_three"></result>
+        <result column="two_four" property="Two_four"></result>
+        <result column="three_one" property="Three_one"></result>
+        <result column="three_two" property="Three_two"></result>
+        <result column="three_three" property="Three_three"></result>
+        <result column="four_one" property="Four_one"></result>
+        <result column="four_two" property="Four_two"></result>
+        <result column="five_one" property="Five_one"></result>
+        <result column="five_two" property="Five_two"></result>
+        <result column="six_one" property="Six_one"></result>
+        <result column="six_two" property="Six_two"></result>
+        <result column="six_three" property="Six_three"></result>
+        <result column="seven_one" property="Seven_one"></result>
+        <result column="eight_one" property="Eight_one"></result>
+        <result column="nine_Two" property="Nine_Two"></result>
+        <result column="eight_two" property="Eight_two"></result>
+        <result column="eight_three" property="Eight_three"></result>
+        <result column="eight_four" property="Eight_four"></result>
+        <result column="eight_five" property="Eight_five"></result>
+        <result column="clean_area" property="CleanArea"></result>
+        <result column="one_class_area" property="OneClassArea"></result>
+        <result column="two_class_area" property="TwoClassArea"></result>
+        <result column="three_class_area" property="ThreeClassArea"></result>
+        <result column="four_class_area" property="FourClassArea"></result>
+        <result column="selfexams_eleven" property="ElevenPath"></result>
+        <result column="nine_one" property="Nine_one"></result>
+        <result column="inputtime" property="InputTime"></result>
+        <result column="status" property="Status"></result>
+    </resultMap>
+
+    <select id="getZcbgByYearAndOrgCode" parameterType="com.xxl.job.executor.service.jobhandler.model.YlqxscqyNdzltxZcbg" resultMap="ZcbgResultMap">
+        select * from T_API_YLQXSCQY_NDZLTX_ZCBG where org_code=#{OrgCode} and years=#{Years}  and manage_category=#{ManageCategory} and status=#{Status}
+    </select>
+
+    <update id="updateZcbgLastDate" parameterType="com.xxl.job.executor.service.jobhandler.model.YlqxscqyNdzltxZcbg">
+        update T_API_YLQXSCQY_NDZLTX_ZCBG set    =#{ElevenPath,jdbcType=VARCHAR},update_date=sysdate where org_code=#{OrgCode} and years=#{Years}  and manage_category=#{ManageCategory} and status=#{Status}
+    </update>
+
+    <insert id="insertZcbg" parameterType="com.xxl.job.executor.service.jobhandler.model.YlqxscqyNdzltxZcbg">
+        insert into T_API_YLQXSCQY_NDZLTX_ZCBG(years,company_name,org_code,permit_no,area,permit_no2,manage_category,one_one,one_two,one_three,two_one,two_two,two_three,
+        two_four,three_one,three_two,three_three,four_one,four_two,five_one,five_two,six_one,six_two,six_three,seven_one,eight_one,nine_Two,
+        eight_two,eight_three,eight_four,eight_five,clean_area,one_class_area,two_class_area,three_class_area,four_class_area,nine_one,
+        selfexams_eleven,inputtime,status,create_date,update_date,TWO_PATH,FOUR_ONE_PATH,FOUR_TWO_PATH,NINE_PATH,OTHER_PATH)
+        VALUES(#{Years,jdbcType=VARCHAR},#{CompanyName,jdbcType=VARCHAR},#{OrgCode,jdbcType=VARCHAR},
+        #{PermitNo,jdbcType=VARCHAR},#{Area,jdbcType=VARCHAR},#{PermitNo2,jdbcType=VARCHAR},#{ManageCategory,jdbcType=VARCHAR},
+        #{One_one,jdbcType=CLOB},#{One_two,jdbcType=CLOB},#{One_three,jdbcType=CLOB},#{Two_one,jdbcType=CLOB},
+        #{Two_two,jdbcType=CLOB},#{Two_three,jdbcType=CLOB},#{Two_four,jdbcType=CLOB},#{Three_one,jdbcType=CLOB},
+        #{Three_two,jdbcType=CLOB},#{Three_three,jdbcType=CLOB},#{Four_one,jdbcType=CLOB},#{Four_two,jdbcType=CLOB},
+        #{Five_one,jdbcType=CLOB},#{Five_two,jdbcType=CLOB},#{Six_one,jdbcType=CLOB},#{Six_two,jdbcType=CLOB},
+        #{Six_three,jdbcType=CLOB},#{Seven_one,jdbcType=CLOB},#{Eight_one,jdbcType=CLOB},#{Nine_Two,jdbcType=CLOB},
+        #{Eight_two,jdbcType=CLOB},#{Eight_three,jdbcType=CLOB},#{Eight_four,jdbcType=CLOB},#{Eight_five,jdbcType=CLOB},
+        #{CleanArea,jdbcType=VARCHAR},#{OneClassArea,jdbcType=VARCHAR},#{TwoClassArea,jdbcType=VARCHAR},#{ThreeClassArea,jdbcType=VARCHAR},
+        #{FourClassArea,jdbcType=VARCHAR},#{Nine_one,jdbcType=CLOB},#{ElevenPath,jdbcType=CLOB},#{InputTime,jdbcType=VARCHAR},#{Status,jdbcType=VARCHAR},sysdate,sysdate,
+        #{TwoPath,jdbcType=CLOB},#{FourOnePath,jdbcType=CLOB},#{FourTwoPath,jdbcType=CLOB},#{NinePath,jdbcType=CLOB},#{OtherPath,jdbcType=CLOB})
+    </insert>
+
+    <update id="insertOrUpdateZcbg" parameterType="com.xxl.job.executor.service.jobhandler.model.YlqxscqyNdzltxZcbg">
+        merge into T_API_YLQXSCQY_NDZLTX_ZCBG T1
+        USING (SELECT #{Years} as years,#{OrgCode} as org_code from dual) T2
+        ON ( T1.org_code=T2.org_code and T1.years=T2.years)
+        WHEN MATCHED THEN
+        UPDATE SET update_date=sysdate where T1.org_code=#{OrgCode} and T1.years=#{Years}
+        WHEN NOT MATCHED THEN
+        INSERT (years,company_name,org_code,permit_no,area,permit_no2,manage_category,one_one,one_two,one_three,two_one,two_two,two_three,
+        two_four,three_one,three_two,three_three,four_one,four_two,five_one,five_two,six_one,six_two,six_three,seven_one,eight_one,nine_Two,
+        eight_two,eight_three,eight_four,eight_five,clean_area,one_class_area,two_class_area,three_class_area,four_class_area,nine_one,
+        inputtime,status,create_date,update_date) VALUES(#{Years,jdbcType=VARCHAR},#{CompanyName,jdbcType=VARCHAR},#{OrgCode,jdbcType=VARCHAR},
+        #{PermitNo,jdbcType=VARCHAR},#{Area,jdbcType=VARCHAR},#{PermitNo2,jdbcType=VARCHAR},#{ManageCategory,jdbcType=VARCHAR},
+        #{One_one,jdbcType=VARCHAR},#{One_two,jdbcType=VARCHAR},#{One_three,jdbcType=VARCHAR},#{Two_one,jdbcType=VARCHAR},
+        #{Two_two,jdbcType=VARCHAR},#{Two_three,jdbcType=VARCHAR},#{Two_four,jdbcType=VARCHAR},#{Three_one,jdbcType=VARCHAR},
+        #{Three_two,jdbcType=VARCHAR},#{Three_three,jdbcType=VARCHAR},#{Four_one,jdbcType=VARCHAR},#{Four_two,jdbcType=VARCHAR},
+        #{Five_one,jdbcType=VARCHAR},#{Five_two,jdbcType=VARCHAR},#{Six_one,jdbcType=VARCHAR},#{Six_two,jdbcType=VARCHAR},
+        #{Six_three,jdbcType=VARCHAR},#{Seven_one,jdbcType=VARCHAR},#{Eight_one,jdbcType=VARCHAR},#{Nine_Two,jdbcType=VARCHAR},
+        #{Eight_two,jdbcType=VARCHAR},#{Eight_three,jdbcType=VARCHAR},#{Eight_four,jdbcType=VARCHAR},#{Eight_five,jdbcType=VARCHAR},
+        #{CleanArea,jdbcType=VARCHAR},#{OneClassArea,jdbcType=VARCHAR},#{TwoClassArea,jdbcType=VARCHAR},#{ThreeClassArea,jdbcType=VARCHAR},
+        #{FourClassArea,jdbcType=VARCHAR},#{ElevenPath,jdbcType=CLOB},#{Nine_one,jdbcType=VARCHAR},#{InputTime,jdbcType=VARCHAR},#{Status,jdbcType=VARCHAR},sysdate,sysdate)
+    </update>
+
+    <update id="insertOrUpdateJjxxzd" parameterType="com.xxl.job.executor.service.jobhandler.model.YlqxscqyNdzltxJjxxzd">
+        merge into T_API_YLQXSCQY_NDZLTX_JJXXZD T1
+        USING (SELECT #{Years} as years,#{OrgCode} as org_code,#{InputTime} as INPUT_TIME,#{Status} as STATUS,
+        #{IndustrialTotal} as INDUSTRIAL_TOTAL,#{MedicalTotal} as MEDICAL_TOTAL,#{IndustrialSaleTotal} as INDUSTRIAL_SALE_TOTAL,#{MedicalSaleTotal} as MEDICAL_SALE_TOTAL,
+        #{ExportsTotal} as EXPORTS_TOTAL,#{ExportsMedicalTotal} as EXPORTS_MEDICAL_TOTAL,#{RevenueTotal} as REVENUE_TOTAL,#{RevenueMedicalTotal} as REVENUE_MEDICAL_TOTAL,
+        #{TaxTotal} as TAX_TOTAL,#{TaxMedicalTotal} as TAX_MEDICAL_TOTAL from dual) T2
+        ON ( T1.org_code=T2.org_code and T1.years=T2.years and T1.INPUT_TIME=T2.INPUT_TIME AND T1.STATUS=T2.STATUS and T1.INDUSTRIAL_TOTAL=T2.INDUSTRIAL_TOTAL
+        AND T1.MEDICAL_TOTAL=T2.MEDICAL_TOTAL AND T1.INDUSTRIAL_SALE_TOTAL=T2.INDUSTRIAL_SALE_TOTAL AND T1.MEDICAL_SALE_TOTAL=T2.MEDICAL_SALE_TOTAL AND
+        T1.EXPORTS_TOTAL=T2.EXPORTS_TOTAL AND T1.EXPORTS_MEDICAL_TOTAL=T2.EXPORTS_MEDICAL_TOTAL AND T1.REVENUE_TOTAL=T2.REVENUE_TOTAL AND
+        T1.REVENUE_MEDICAL_TOTAL=T2.REVENUE_MEDICAL_TOTAL AND T1.TAX_TOTAL=T2.TAX_TOTAL AND T1.TAX_MEDICAL_TOTAL=T2.TAX_MEDICAL_TOTAL)
+        WHEN MATCHED THEN
+        UPDATE SET update_date=sysdate where T1.org_code=#{OrgCode} and T1.years=#{Years} and T1.INPUT_TIME=#{InputTime} and T1.STATUS=#{Status}
+        WHEN NOT MATCHED THEN
+        INSERT (YEARS,COMPANY_NAME,ORG_CODE,INDUSTRIAL_TOTAL,MEDICAL_TOTAL,INDUSTRIAL_SALE_TOTAL,MEDICAL_SALE_TOTAL,EXPORTS_TOTAL,
+        EXPORTS_MEDICAL_TOTAL,REVENUE_TOTAL,REVENUE_MEDICAL_TOTAL,TAX_TOTAL,TAX_MEDICAL_TOTAL,INPUT_TIME,STATUS,CREATE_DATE,UPDATE_DATE)
+        VALUES
+        (#{Years,jdbcType=VARCHAR},#{CompanyName,jdbcType=VARCHAR},#{OrgCode,jdbcType=VARCHAR},#{IndustrialTotal,jdbcType=VARCHAR},
+        #{MedicalTotal,jdbcType=VARCHAR},#{IndustrialSaleTotal,jdbcType=VARCHAR},#{MedicalSaleTotal,jdbcType=VARCHAR},
+        #{ExportsTotal,jdbcType=VARCHAR},#{ExportsMedicalTotal,jdbcType=VARCHAR},#{RevenueTotal,jdbcType=VARCHAR},
+        #{RevenueMedicalTotal,jdbcType=VARCHAR},#{TaxTotal,jdbcType=VARCHAR},#{TaxMedicalTotal,jdbcType=VARCHAR},#{InputTime,jdbcType=VARCHAR},
+        #{Status,jdbcType=VARCHAR},sysdate,sysdate)
+    </update>
+</mapper>

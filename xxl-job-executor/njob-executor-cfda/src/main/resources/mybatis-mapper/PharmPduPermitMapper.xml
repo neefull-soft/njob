@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.job.executor.service.jobhandler.dao.PharmaceuticalProductionPermitDao">
+    <resultMap id="YLJGZJResultMap" type="com.xxl.job.executor.service.jobhandler.model.PharmProductPmtYljgzjxk"/>
+
+    <resultMap id="YPSCXKResultMap" type="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkQyxk">
+        <id column="SQID" property="compId"></id>
+        <result column="DOTYPE" property="doType"></result>
+        <result column="ACCEPTANCECODE" property="acceptanceCode"></result>
+        <result column="FILLDATE" property="fillDate"></result>
+        <result column="OLDLICENSENO" property="oldLicenseNo"></result>
+        <result column="LICENSENO" property="licenseNo"></result>
+        <result column="COMPNAME" property="compName"></result>
+        <result column="ORGCODE" property="orgCode"></result>
+        <result column="COMPTYPE" property="compType"></result>
+        <result column="PROVINCEAREANAME" property="provinceAreaName"></result>
+        <result column="CITYAREANAME" property="cityAreaName"></result>
+        <result column="REGADDRESS" property="regAddress"></result>
+        <result column="TYPECODE" property="typeCode"></result>
+        <result column="ISSUEDATE" property="issueDate"></result>
+        <result column="EXPIRYDATE" property="expiryDate"></result>
+        <result column="LICENSEORG" property="licenseOrg"></result>
+        <result column="ORGNAME" property="orgName"></result>
+        <result column="ORGPERSON" property="orgPerson"></result>
+        <result column="ISSUER" property="issuer"></result>
+        <result column="LEGALREPRESENTATIVE" property="legalRepresentative"></result>
+        <result column="LEGALTITLE" property="legalTitle"></result>
+        <result column="LEGALSCHOOLMAJOR" property="legalSchoolMajor"></result>
+        <result column="LEGALSCHOOL" property="legalSchool"></result>
+        <result column="LEGALIDNO" property="legalIdno"></result>
+        <result column="ENTERPRISEHEAD" property="enterpriseHead"></result>
+        <result column="ENTERPRISTITLE" property="enterprisTitle"></result>
+        <result column="ENTERPRISLSCHOOLMAJOR" property="enterprislSchoolMajor"></result>
+        <result column="ENTERPRISESCHOOL" property="enterpriseSchool"></result>
+        <result column="ENTERPRISEIDNO" property="enterpriseIdno"></result>
+        <result column="QUALITYHEAD" property="qualityHead"></result>
+        <result column="QUALITYTITLE" property="qualityTitle"></result>
+        <result column="QUALITYSCHOOLMAJOR" property="qualitySchoolMajor"></result>
+        <result column="QUALITYSCHOOL" property="qualitySchool"></result>
+        <result column="QUALITYIDNO" property="qualityIdno"></result>
+        <result column="PRODUCTIONHEAD" property="productionHead"></result>
+        <result column="PRODUCTIONTITLE" property="productionTitle"></result>
+        <result column="PRODUCTIONSCHOOLMAJOR" property="productionSchoolMajor"></result>
+        <result column="PRODUCTIONSCHOOL" property="productionSchool"></result>
+        <result column="PRODUCTIONIDNO" property="productionIdno"></result>
+        <result column="LICENSOR" property="licensor"></result>
+        <result column="LICENSORTITLE" property="licensorTitle"></result>
+        <result column="LICENSORSCHOOLMAJOR" property="licensorSchoolMajor"></result>
+        <result column="LICENSORSCHOOL" property="licensorSchool"></result>
+        <result column="LICENSORIDNO" property="licensorIdno"></result>
+        <result column="ISASEPSIS" property="isAsepsis"></result>
+        <result column="POSTCODE" property="postcode"></result>
+        <result column="AREANAME" property="areaName"></result>
+        <result column="FOUNDDATE" property="foundDate"></result>
+        <result column="RECENTLYRENAMEDTIME" property="recentlyRenamedTime"></result>
+        <result column="ISHEADQUARTER" property="isHeadquarter"></result>
+        <result column="HEADQUARTERNAME" property="headquarterName"></result>
+        <result column="HEADQUARTERORGCODE" property="headquarterOrgCode"></result>
+        <result column="STAFFNUMBER" property="staffNumber"></result>
+        <result column="TECHNICALNUMBER" property="technicalNumber"></result>
+        <result column="SENIORTITLENUMBER" property="seniorTitleNumber"></result>
+        <result column="JUNIORTITLENUMBER" property="juniorTitleNumber"></result>
+        <result column="GRADUATEDEGREENUMBER" property="graduateDegreeNumber"></result>
+        <result column="BACHELORDEGREENUMBER" property="bachelorDegreeNumber"></result>
+        <result column="GDORIGINALVALUE" property="gdOriginalValue"></result>
+        <result column="GDORIGINALNET" property="gdOriginalNet"></result>
+        <result column="PLANTAREA" property="plantArea"></result>
+        <result column="BUILTUPAREA" property="builtUpArea"></result>
+        <result column="ANNUALOUTPUTVALUE" property="annualOutputValue"></result>
+        <result column="LASTYEARSPROFIT" property="lastYearsProfit"></result>
+        <result column="CRUDEDRUGREGNUMBER" property="crudeDrugRegNumber"></result>
+        <result column="PREPARATIONREGNUMBER" property="preparationRegNumber"></result>
+        <result column="OTHERREGNUMBER" property="otherRegNumber"></result>
+        <result column="ANNUALPRODUCTIONNUMBER" property="annualProductionNumber"></result>
+        <result column="CONTACTER" property="contacter"></result>
+        <result column="FAXPHONE" property="faxphone"></result>
+        <result column="TELEPHONE" property="telephone"></result>
+        <result column="MOBILEPHONE" property="mobilephone"></result>
+        <result column="EMAIL" property="email"></result>
+        <result column="REMARK" property="remark"></result>
+        <collection property="licPSAddrList" ofType="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkscfw" javaType="ArrayList">
+            <result column="SQID" property="compId"></result>
+            <result column="ADDRDETAIL" property="addrDetail"></result>
+            <result column="PRODUCTIONSCOPE" property="productionScope"></result>
+            <result column="PRODUCTIONSCOPEF" property="productionScopeF"></result>
+            <result column="THROUGHPUT" property="throughput"></result>
+            <result column="CALCULATIONUNIT" property="calculationUnit"></result>
+            <result column="PREPARATIONNUMBER" property="preparationNumber"></result>
+            <result column="GETGMPCERTIFICATE" property="getGmpCertificate"></result>
+            <result column="GMPRZSCOPE" property="gmpRzScope"></result>
+        </collection>
+        <collection property="licGWGmpList" ofType="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkGmp" javaType="ArrayList">
+            <result column="SQID" property="compId"></result>
+            <result column="AUTHNAME" property="authName"></result>
+            <result column="AUTHRANGE" property="authRange"></result>
+            <result column="PASSAUTHDATE" property="passAuthDate"></result>
+            <result column="AUTHORG" property="authOrg"></result>
+            <result column="COUNTRYNAME" property="countryName"></result>
+            <result column="VARIETYNAME" property="varietyName"></result>
+            <result column="REMARK" property="remark"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="YPSCXKBGResultMap" type="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkBg">
+        <id column="SQID" property="sqId"></id>
+        <result column="CHANGEDATE" property="changeDate"></result>
+        <result column="LICENSENOMARKER" property="licenseNoMarker"></result>
+        <result column="LICENSENO" property="licenseNo"></result>
+        <result column="COMPNAME" property="compName"></result>
+        <result column="ORGCODE" property="orgCode"></result>
+        <result column="PROVINCEAREANAME" property="provinceAreaName"></result>
+        <result column="CITYAREANAME" property="cityAreaName"></result>
+        <result column="REGADDRESS" property="regAddress"></result>
+        <result column="LEGALREPRESENTATIVE" property="legalRepresentative"></result>
+        <result column="ENTERPRISEHEAD" property="enterpriseHead"></result>
+        <result column="QUALITYHEAD" property="qualityHead"></result>
+        <result column="TYPECODE" property="typeCode"></result>
+        <result column="ISSUEDATE" property="issueDate"></result>
+        <result column="EXPIRYDATE" property="expiryDate"></result>
+        <result column="LICENSEORG" property="licenseOrg"></result>
+        <result column="ORGNAME" property="orgName"></result>
+        <result column="ORGPERSON" property="orgPerson"></result>
+        <result column="ISSUER" property="issuer"></result>
+        <result column="LICPSADDRLIST" property="lastYearsProfit"></result>
+        <collection property="licPSAddrList" ofType="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkscfw" javaType="ArrayList">
+            <result column="SQID" property="compId"></result>
+            <result column="ADDRDETAIL" property="addrDetail"></result>
+            <result column="PRODUCTIONSCOPE" property="productionScope"></result>
+            <result column="PRODUCTIONSCOPEF" property="productionScopeF"></result>
+            <result column="THROUGHPUT" property="throughput"></result>
+            <result column="CALCULATIONUNIT" property="calculationUnit"></result>
+            <result column="PREPARATIONNUMBER" property="preparationNumber"></result>
+            <result column="GETGMPCERTIFICATE" property="getGmpCertificate"></result>
+            <result column="GMPRZSCOPE" property="gmpRzScope"></result>
+        </collection>
+    </resultMap>
+    
+    <resultMap id="YPJBSCTJHSCFWMap" type="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkscfw">
+        <result column="SQID" property="compId"></result>
+        <result column="ADDRDETAIL" property="addrDetail"></result>
+        <result column="PRODUCTIONSCOPE" property="productionScope"></result>
+        <result column="PRODUCTIONSCOPEF" property="productionScopeF"></result>
+        <result column="THROUGHPUT" property="throughput"></result>
+        <result column="CALCULATIONUNIT" property="calculationUnit"></result>
+        <result column="PREPARATIONNUMBER" property="preparationNumber"></result>
+        <result column="GETGMPCERTIFICATE" property="getGmpCertificate"></result>
+        <result column="GMPRZSCOPE" property="gmpRzScope"></result>
+    </resultMap>
+    
+    <resultMap id="YPTGJWYPGMPRZMap" type="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkGmp">
+        <result column="SQID" property="compId"></result>
+        <result column="AUTHNAME" property="authName"></result>
+        <result column="AUTHRANGE" property="authRange"></result>
+        <result column="PASSAUTHDATE" property="passAuthDate"></result>
+        <result column="AUTHORG" property="authOrg"></result>
+        <result column="COUNTRYNAME" property="countryName"></result>
+        <result column="VARIETYNAME" property="varietyName"></result>
+        <result column="REMARK" property="remark"></result>
+    </resultMap>
+
+    <select id="getYljgzjxkAllDate" resultMap="YLJGZJResultMap">
+        SELECT NVL2(t.LICENSENOMARKER,'2','1') as doType,t.LICENSENOMARKER as licenseNoMarker,nvl(t.COMPNAME,'无') as compName,nvl(t.ORGCODE,'无') as orgCode,
+        nvl(t.REGADDRESS,'无') as regAddress,nvl(t.COMPTYPE,'无') as compType,nvl(t.LICENSENO,'无') as licenseNo,nvl(t.LICENSEORG,'无') as licenseOrg,
+        nvl(t.ISSUEDATE,'无') as issueDate,nvl(t.EXPIRYDATE,'无') as expiryDate,nvl(t.ORGNAME,'无') as orgName,nvl(t.ORGPERSON,'无') as orgPerson,
+        nvl(t.ISSUER,'无') as issuer,nvl(t.LICADDRRANGE,'无') as licAddrRange,nvl(t.LICADDRRANGEF,'无') as licAddrRangeF,nvl(t.LEGALREPRESENTATIVE,'无') as legalRepresentative,
+        nvl(t.ENTERPRISEHEAD,'无') as enterpriseHead,nvl(t.QUALITYHEAD,'无') as qualityHead,nvl(t.PROVINCEAREANAME,'上海市') as provinceAreaName,
+        nvl(b.VALUE,'无') as cityAreaName,SQID id from T_EXC_GJ_YLJGZJXKZXT t
+        left join DICT_QXDM b on t.CITYAREANAME=b.CODE
+        where trunc(to_date(t.DOWNLOAD_TIME,'yyyy-mm-dd hh24:mi:ss')) = trunc(sysdate) and (t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null)
+    </select>
+
+    <update id="updateYljgzjAndYpscXkStatus">
+        update ${tableName}
+        <set>
+            <if test="flag != null">UP_STATE=#{flag},</if>
+            <if test="udate != null">UPLOAD_TIME=#{udate},</if>
+            <if test="errinfo != null">ERR_COMMENTS=#{errinfo}</if>
+        </set>
+        where SQID=#{sqid} and UP_STATE <![CDATA[ <> ]]> '1'
+    </update>
+
+    <select id="getYpscxkAllDate" resultMap="YPSCXKResultMap">
+        select t.SQID,t.DOTYPE,t.ACCEPTANCECODE,t.OLDLICENSENO,nvl(t.LICENSENO,'无') LICENSENO,nvl(t.COMPNAME,'无') COMPNAME,nvl(t.ORGCODE,'无') ORGCODE,nvl(t.COMPTYPE,'无') COMPTYPE,nvl(t.PROVINCEAREANAME,'上海市') PROVINCEAREANAME,
+      nvl(t.CITYAREANAME,'无') CITYAREANAME,REGADDRESS,nvl(t.TYPECODE,'无') TYPECODE,nvl(t.ISSUEDATE,'19000101') ISSUEDATE,nvl(t.EXPIRYDATE,'19000101') EXPIRYDATE,nvl(t.LICENSEORG,'无') LICENSEORG,ORGNAME,
+      nvl(t.ORGPERSON,'无') ORGPERSON,nvl(t.ISSUER,'无') ISSUER,nvl(t.LEGALREPRESENTATIVE,'无') LEGALREPRESENTATIVE,nvl(t.LEGALTITLE,'无') LEGALTITLE,nvl(t.LEGALSCHOOLMAJOR,'无') LEGALSCHOOLMAJOR,nvl(t.LEGALSCHOOL,'无') LEGALSCHOOL,nvl(t.LEGALIDNO,'无') LEGALIDNO,
+      nvl(t.ENTERPRISEHEAD,'无') ENTERPRISEHEAD,nvl(t.ENTERPRISTITLE,'无') ENTERPRISTITLE,nvl(t.ENTERPRISLSCHOOLMAJOR,'无') ENTERPRISLSCHOOLMAJOR,nvl(t.ENTERPRISESCHOOL,'无') ENTERPRISESCHOOL,nvl(t.ENTERPRISEIDNO,'无') ENTERPRISEIDNO,nvl(t.QUALITYHEAD,'无') QUALITYHEAD,
+      nvl(t.QUALITYTITLE,'无') QUALITYTITLE,nvl(t.QUALITYSCHOOLMAJOR,'无') QUALITYSCHOOLMAJOR,nvl(t.QUALITYSCHOOL,'无') QUALITYSCHOOL,nvl(t.QUALITYIDNO,'无') QUALITYIDNO,nvl(t.PRODUCTIONHEAD,'无') PRODUCTIONHEAD,nvl(t.PRODUCTIONTITLE,'无') PRODUCTIONTITLE,
+      nvl(t.PRODUCTIONSCHOOLMAJOR,'无') PRODUCTIONSCHOOLMAJOR,nvl(t.PRODUCTIONSCHOOL,'无') PRODUCTIONSCHOOL,nvl(t.PRODUCTIONIDNO,'无') PRODUCTIONIDNO,nvl(t.LICENSOR,'无') LICENSOR,nvl(t.LICENSORTITLE,'无') LICENSORTITLE,nvl(t.LICENSORSCHOOLMAJOR,'无') LICENSORSCHOOLMAJOR,
+      nvl(t.LICENSORSCHOOL,'无') LICENSORSCHOOL,nvl(t.LICENSORIDNO,'无') LICENSORIDNO,nvl(t.ISASEPSIS,'无') ISASEPSIS,nvl(t.POSTCODE,'无') POSTCODE,nvl(t.AREANAME,'无') AREANAME,nvl(t.FOUNDDATE,'19000101') FOUNDDATE,nvl(t.RECENTLYRENAMEDTIME,'19000101') RECENTLYRENAMEDTIME,
+      nvl(t.ISHEADQUARTER,'无') ISHEADQUARTER,nvl(t.HEADQUARTERNAME,'无') HEADQUARTERNAME,nvl(t.HEADQUARTERORGCODE,'无') HEADQUARTERORGCODE,
+      nvl(t.STAFFNUMBER,0) STAFFNUMBER,nvl(t.TECHNICALNUMBER,0) TECHNICALNUMBER,nvl(t.SENIORTITLENUMBER,0) SENIORTITLENUMBER,
+      nvl(t.JUNIORTITLENUMBER,0) JUNIORTITLENUMBER,nvl(t.GRADUATEDEGREENUMBER,0) GRADUATEDEGREENUMBER,nvl(t.BACHELORDEGREENUMBER,0) BACHELORDEGREENUMBER,nvl(t.GDORIGINALVALUE,0) GDORIGINALVALUE,nvl(t.GDORIGINALNET,0) GDORIGINALNET,nvl(t.PLANTAREA,0) PLANTAREA,
+      nvl(t.BUILTUPAREA,0) BUILTUPAREA,nvl(t.ANNUALOUTPUTVALUE,0) ANNUALOUTPUTVALUE,nvl(t.LASTYEARSPROFIT,0) LASTYEARSPROFIT,nvl(t.CRUDEDRUGREGNUMBER,0) CRUDEDRUGREGNUMBER,nvl(t.PREPARATIONREGNUMBER,0) PREPARATIONREGNUMBER,nvl(t.OTHERREGNUMBER,0) OTHERREGNUMBER,
+      nvl(t.ANNUALPRODUCTIONNUMBER,0) ANNUALPRODUCTIONNUMBER,nvl(t.CONTACTER,'无') CONTACTER,nvl(t.FAXPHONE,'无') FAXPHONE,nvl(t.TELEPHONE,'无') TELEPHONE,nvl(t.MOBILEPHONE,'无') MOBILEPHONE,nvl(t.EMAIL,'无') EMAIL,nvl(t.REMARK,'无') REMARK
+      from t_api_ypsc_company_license t
+      where t.SQID is not null
+      and (t.DOTYPE = '1' or t.DOTYPE = '2')
+      and (t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null) order by t.download_time asc
+    </select>
+
+    <select id="getYpscxkAllDateOne" parameterType="java.lang.String" resultMap="YPSCXKResultMap">
+      select t.SQID,t.DOTYPE,t.ACCEPTANCECODE,t.OLDLICENSENO,nvl(t.LICENSENO,'无') LICENSENO,nvl(t.COMPNAME,'无') COMPNAME,nvl(t.ORGCODE,'无') ORGCODE,nvl(t.COMPTYPE,'无') COMPTYPE,nvl(t.PROVINCEAREANAME,'上海市') PROVINCEAREANAME,
+      nvl(t.CITYAREANAME,'无') CITYAREANAME,REGADDRESS,nvl(t.TYPECODE,'无') TYPECODE,nvl(t.ISSUEDATE,'19000101') ISSUEDATE,nvl(t.EXPIRYDATE,'19000101') EXPIRYDATE,nvl(t.LICENSEORG,'无') LICENSEORG,ORGNAME,
+      nvl(t.ORGPERSON,'无') ORGPERSON,nvl(t.ISSUER,'无') ISSUER,nvl(t.LEGALREPRESENTATIVE,'无') LEGALREPRESENTATIVE,nvl(t.LEGALTITLE,'无') LEGALTITLE,nvl(t.LEGALSCHOOLMAJOR,'无') LEGALSCHOOLMAJOR,nvl(t.LEGALSCHOOL,'无') LEGALSCHOOL,nvl(t.LEGALIDNO,'无') LEGALIDNO,
+      nvl(t.ENTERPRISEHEAD,'无') ENTERPRISEHEAD,nvl(t.ENTERPRISTITLE,'无') ENTERPRISTITLE,nvl(t.ENTERPRISLSCHOOLMAJOR,'无') ENTERPRISLSCHOOLMAJOR,nvl(t.ENTERPRISESCHOOL,'无') ENTERPRISESCHOOL,nvl(t.ENTERPRISEIDNO,'无') ENTERPRISEIDNO,nvl(t.QUALITYHEAD,'无') QUALITYHEAD,
+      nvl(t.QUALITYTITLE,'无') QUALITYTITLE,nvl(t.QUALITYSCHOOLMAJOR,'无') QUALITYSCHOOLMAJOR,nvl(t.QUALITYSCHOOL,'无') QUALITYSCHOOL,nvl(t.QUALITYIDNO,'无') QUALITYIDNO,nvl(t.PRODUCTIONHEAD,'无') PRODUCTIONHEAD,nvl(t.PRODUCTIONTITLE,'无') PRODUCTIONTITLE,
+      nvl(t.PRODUCTIONSCHOOLMAJOR,'无') PRODUCTIONSCHOOLMAJOR,nvl(t.PRODUCTIONSCHOOL,'无') PRODUCTIONSCHOOL,nvl(t.PRODUCTIONIDNO,'无') PRODUCTIONIDNO,nvl(t.LICENSOR,'无') LICENSOR,nvl(t.LICENSORTITLE,'无') LICENSORTITLE,nvl(t.LICENSORSCHOOLMAJOR,'无') LICENSORSCHOOLMAJOR,
+      nvl(t.LICENSORSCHOOL,'无') LICENSORSCHOOL,nvl(t.LICENSORIDNO,'无') LICENSORIDNO,nvl(t.ISASEPSIS,'无') ISASEPSIS,nvl(t.POSTCODE,'无') POSTCODE,nvl(t.AREANAME,'无') AREANAME,nvl(t.FOUNDDATE,'19000101') FOUNDDATE,nvl(t.RECENTLYRENAMEDTIME,'19000101') RECENTLYRENAMEDTIME,
+      nvl(t.ISHEADQUARTER,'无') ISHEADQUARTER,nvl(t.HEADQUARTERNAME,'无') HEADQUARTERNAME,nvl(t.HEADQUARTERORGCODE,'无') HEADQUARTERORGCODE,
+      nvl(t.STAFFNUMBER,0) STAFFNUMBER,nvl(t.TECHNICALNUMBER,0) TECHNICALNUMBER,nvl(t.SENIORTITLENUMBER,0) SENIORTITLENUMBER,
+      nvl(t.JUNIORTITLENUMBER,0) JUNIORTITLENUMBER,nvl(t.GRADUATEDEGREENUMBER,0) GRADUATEDEGREENUMBER,nvl(t.BACHELORDEGREENUMBER,0) BACHELORDEGREENUMBER,nvl(t.GDORIGINALVALUE,0) GDORIGINALVALUE,nvl(t.GDORIGINALNET,0) GDORIGINALNET,nvl(t.PLANTAREA,0) PLANTAREA,
+      nvl(t.BUILTUPAREA,0) BUILTUPAREA,nvl(t.ANNUALOUTPUTVALUE,0) ANNUALOUTPUTVALUE,nvl(t.LASTYEARSPROFIT,0) LASTYEARSPROFIT,nvl(t.CRUDEDRUGREGNUMBER,0) CRUDEDRUGREGNUMBER,nvl(t.PREPARATIONREGNUMBER,0) PREPARATIONREGNUMBER,nvl(t.OTHERREGNUMBER,0) OTHERREGNUMBER,
+      nvl(t.ANNUALPRODUCTIONNUMBER,0) ANNUALPRODUCTIONNUMBER,nvl(t.CONTACTER,'无') CONTACTER,nvl(t.FAXPHONE,'无') FAXPHONE,nvl(t.TELEPHONE,'无') TELEPHONE,nvl(t.MOBILEPHONE,'无') MOBILEPHONE,nvl(t.EMAIL,'无') EMAIL,nvl(t.REMARK,'无') REMARK,
+      nvl(b.ADDRDETAIL,'无') ADDRDETAIL,nvl(b.PRODUCTIONSCOPE,'无') PRODUCTIONSCOPE,nvl(b.PRODUCTIONSCOPEF,'无') PRODUCTIONSCOPEF,nvl(replace(regexp_replace(THROUGHPUT,'[^0-9|、|.|-]'),'-','~'),'0') THROUGHPUT,nvl(b.CALCULATIONUNIT,'0') CALCULATIONUNIT,nvl(b.PREPARATIONNUMBER,'0') PREPARATIONNUMBER,
+      nvl(b.GETGMPCERTIFICATE,'无') GETGMPCERTIFICATE,nvl(b.GMPRZSCOPE,'无') GMPRZSCOPE,
+      nvl(c.AUTHNAME,'无') AUTHNAME,nvl(c.AUTHRANGE,'无') AUTHRANGE,c.PASSAUTHDATE,c.AUTHORG,c.COUNTRYNAME,c.VARIETYNAME,c.REMARK
+      from t_api_ypsc_company_license t,t_api_ypsc_company_psaddr b,t_api_ypsc_drug_gmp c
+      where t.SQID=b.SQID
+      and t.SQID=c.SQID
+      and t.SQID=#{sqid}
+    </select>
+
+    <select id="getYpscQyxkz" parameterType="java.lang.String" resultMap="YPSCXKResultMap">
+        select t.SQID,t.DOTYPE,t.ACCEPTANCECODE,t.OLDLICENSENO,nvl(t.LICENSENO,'无') LICENSENO,nvl(t.COMPNAME,'无') COMPNAME,nvl(t.ORGCODE,'无') ORGCODE,nvl(t.COMPTYPE,'无') COMPTYPE,nvl(t.PROVINCEAREANAME,'上海市') PROVINCEAREANAME,
+      nvl(t.CITYAREANAME,'无') CITYAREANAME,REGADDRESS,nvl(t.TYPECODE,'无') TYPECODE,nvl(t.ISSUEDATE,'19000101') ISSUEDATE,nvl(t.EXPIRYDATE,'19000101') EXPIRYDATE,nvl(t.LICENSEORG,'无') LICENSEORG,ORGNAME,
+      nvl(t.ORGPERSON,'无') ORGPERSON,nvl(t.ISSUER,'无') ISSUER,nvl(t.LEGALREPRESENTATIVE,'无') LEGALREPRESENTATIVE,nvl(t.LEGALTITLE,'无') LEGALTITLE,nvl(t.LEGALSCHOOLMAJOR,'无') LEGALSCHOOLMAJOR,nvl(t.LEGALSCHOOL,'无') LEGALSCHOOL,nvl(t.LEGALIDNO,'无') LEGALIDNO,
+      nvl(t.ENTERPRISEHEAD,'无') ENTERPRISEHEAD,nvl(t.ENTERPRISTITLE,'无') ENTERPRISTITLE,nvl(t.ENTERPRISLSCHOOLMAJOR,'无') ENTERPRISLSCHOOLMAJOR,nvl(t.ENTERPRISESCHOOL,'无') ENTERPRISESCHOOL,nvl(t.ENTERPRISEIDNO,'无') ENTERPRISEIDNO,nvl(t.QUALITYHEAD,'无') QUALITYHEAD,
+      nvl(t.QUALITYTITLE,'无') QUALITYTITLE,nvl(t.QUALITYSCHOOLMAJOR,'无') QUALITYSCHOOLMAJOR,nvl(t.QUALITYSCHOOL,'无') QUALITYSCHOOL,nvl(t.QUALITYIDNO,'无') QUALITYIDNO,nvl(t.PRODUCTIONHEAD,'无') PRODUCTIONHEAD,nvl(t.PRODUCTIONTITLE,'无') PRODUCTIONTITLE,
+      nvl(t.PRODUCTIONSCHOOLMAJOR,'无') PRODUCTIONSCHOOLMAJOR,nvl(t.PRODUCTIONSCHOOL,'无') PRODUCTIONSCHOOL,nvl(t.PRODUCTIONIDNO,'无') PRODUCTIONIDNO,nvl(t.LICENSOR,'无') LICENSOR,nvl(t.LICENSORTITLE,'无') LICENSORTITLE,nvl(t.LICENSORSCHOOLMAJOR,'无') LICENSORSCHOOLMAJOR,
+      nvl(t.LICENSORSCHOOL,'无') LICENSORSCHOOL,nvl(t.LICENSORIDNO,'无') LICENSORIDNO,nvl(t.ISASEPSIS,'无') ISASEPSIS,nvl(t.POSTCODE,'无') POSTCODE,nvl(t.AREANAME,'无') AREANAME,nvl(t.FOUNDDATE,'19000101') FOUNDDATE,nvl(t.RECENTLYRENAMEDTIME,'19000101') RECENTLYRENAMEDTIME,
+      nvl(t.ISHEADQUARTER,'无') ISHEADQUARTER,nvl(t.HEADQUARTERNAME,'无') HEADQUARTERNAME,nvl(t.HEADQUARTERORGCODE,'无') HEADQUARTERORGCODE,
+      nvl(t.STAFFNUMBER,0) STAFFNUMBER,nvl(t.TECHNICALNUMBER,0) TECHNICALNUMBER,nvl(t.SENIORTITLENUMBER,0) SENIORTITLENUMBER,
+      nvl(t.JUNIORTITLENUMBER,0) JUNIORTITLENUMBER,nvl(t.GRADUATEDEGREENUMBER,0) GRADUATEDEGREENUMBER,nvl(t.BACHELORDEGREENUMBER,0) BACHELORDEGREENUMBER,nvl(t.GDORIGINALVALUE,0) GDORIGINALVALUE,nvl(t.GDORIGINALNET,0) GDORIGINALNET,nvl(t.PLANTAREA,0) PLANTAREA,
+      nvl(t.BUILTUPAREA,0) BUILTUPAREA,nvl(t.ANNUALOUTPUTVALUE,0) ANNUALOUTPUTVALUE,nvl(t.LASTYEARSPROFIT,0) LASTYEARSPROFIT,nvl(t.CRUDEDRUGREGNUMBER,0) CRUDEDRUGREGNUMBER,nvl(t.PREPARATIONREGNUMBER,0) PREPARATIONREGNUMBER,nvl(t.OTHERREGNUMBER,0) OTHERREGNUMBER,
+      nvl(t.ANNUALPRODUCTIONNUMBER,0) ANNUALPRODUCTIONNUMBER,nvl(t.CONTACTER,'无') CONTACTER,nvl(t.FAXPHONE,'无') FAXPHONE,nvl(t.TELEPHONE,'无') TELEPHONE,nvl(t.MOBILEPHONE,'无') MOBILEPHONE,nvl(t.EMAIL,'无') EMAIL,nvl(t.REMARK,'无') REMARK
+      from t_api_ypsc_company_license t where t.SQID=#{sqid}
+    </select>
+
+    <select id="getYpscJbsctjdscfw" parameterType="java.lang.String" resultMap="YPJBSCTJHSCFWMap">
+      select nvl(b.ADDRDETAIL,'无') ADDRDETAIL,nvl(b.PRODUCTIONSCOPE,'无') PRODUCTIONSCOPE,nvl(b.PRODUCTIONSCOPEF,'无') PRODUCTIONSCOPEF,nvl(replace(regexp_replace(THROUGHPUT,'[^0-9|、|.|-]'),'-','~'),'0') THROUGHPUT,nvl(b.CALCULATIONUNIT,'0') CALCULATIONUNIT,nvl(b.PREPARATIONNUMBER,'0') PREPARATIONNUMBER,
+      nvl(b.GETGMPCERTIFICATE,'无') GETGMPCERTIFICATE,nvl(b.GMPRZSCOPE,'无') GMPRZSCOPE
+      from t_api_ypsc_company_psaddr b where b.SQID=#{sqid}
+    </select>
+
+    <select id="getYpscTgjwypgmprz" parameterType="java.lang.String" resultMap="YPTGJWYPGMPRZMap">
+      select c.SQID,nvl(c.AUTHNAME,'无') AUTHNAME,nvl(c.AUTHRANGE,'无') AUTHRANGE,c.PASSAUTHDATE,c.AUTHORG,c.COUNTRYNAME,c.VARIETYNAME,c.REMARK
+      from t_api_ypsc_drug_gmp c where c.SQID=#{sqid}
+    </select>
+
+    <select id="getYpscxkBgAllDate" resultMap="YPSCXKBGResultMap">
+      select t.SQID,t.OLDLICENSENO LICENSENOMARKER,nvl(t.LICENSENO,'无') LICENSENO,nvl(t.COMPNAME,'无') COMPNAME,nvl(t.ORGCODE,'无') ORGCODE,
+      t.REGADDRESS,nvl(t.PROVINCEAREANAME,'上海市') PROVINCEAREANAME,nvl(t.CITYAREANAME,'无') CITYAREANAME,nvl(t.ISSUEDATE,'19000101') ISSUEDATE,
+      nvl(t.EXPIRYDATE,'19000101') EXPIRYDATE,nvl(t.LICENSEORG,'无') LICENSEORG,t.ORGNAME,nvl(t.ORGPERSON,'无') ORGPERSON,nvl(t.ISSUER,'无') ISSUER,
+      nvl(t.LEGALREPRESENTATIVE,'无') LEGALREPRESENTATIVE,nvl(t.ENTERPRISEHEAD,'无') ENTERPRISEHEAD,nvl(t.QUALITYHEAD,'无') QUALITYHEAD,
+      nvl(t.TYPECODE,'无') TYPECODE,nvl(t.RECENTLYRENAMEDTIME,'19000101') CHANGEDATE
+      from t_api_ypsc_company_license t
+      where t.SQID is not null
+      and (t.DOTYPE = '3' or t.DOTYPE = '4')
+      and (t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null) order by t.download_time asc
+    </select>
+</mapper>

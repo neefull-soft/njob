@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.job.executor.service.jobhandler.dao.MedicalDeviceDao">
+    <resultMap id="SCBAResultMap" type="com.xxl.job.executor.service.jobhandler.model.MedicalDeviceYlscba"/>
+    <resultMap id="CPXXResultMap" type="com.xxl.job.executor.service.jobhandler.model.EquipmentProductsYlscba"/>
+    <resultMap id="RLJYBAResultMap" type="com.xxl.job.executor.service.jobhandler.model.MedicalDeviceRlba"/>
+    <resultMap id="JYXKResultMap" type="com.xxl.job.executor.service.jobhandler.model.MedicalDeviceJyxk"/>
+    <resultMap id="SCXKResultMap" type="com.xxl.job.executor.service.jobhandler.model.MedicalDeviceScxk"/>
+    <resultMap id="SCXKCPResultMap" type="com.xxl.job.executor.service.jobhandler.model.EquipmentProductsScxk"/>
+    <resultMap id="WTSCBAResultMap" type="com.xxl.job.executor.service.jobhandler.model.MedicalDeviceWtscba"/>
+    <resultMap id="WTSCBACPResultMap" type="com.xxl.job.executor.service.jobhandler.model.EquipmentProductsWtscba"/>
+
+    <select id="getMedicalDeviceDatSCXK" resultMap="SCXKResultMap">
+        SELECT *  from ${tableName} where flag=0 ORDER by sqsxdm ASC
+    </select>
+    <select id="getEquipmentProductsSCXK" resultMap="SCXKCPResultMap">
+        SELECT *  from T_API_YLQX_SCXK_CPXX where  SQID=#{sqid}
+    </select>
+
+    <select id="getMedicalDeviceDatWTSCBA" resultMap="WTSCBAResultMap">
+        SELECT *  from ${tableName} where flag=0
+    </select>
+    <select id="getEquipmentProductsWTSCBA" resultMap="WTSCBACPResultMap">
+        SELECT *  from T_API_YLQX_WTSCBA_CPXX where  SQID=#{sqid}
+    </select>
+
+    <select id="getMedicalDeviceDatYLSCBA" resultMap="SCBAResultMap">
+        SELECT *  from ${tableName} where flag=0 ORDER by sqsxdm ASC
+    </select>
+    <select id="getEquipmentProductsYLSCBA" resultMap="CPXXResultMap">
+        SELECT *  from T_API_YLQX_YLSCBA_CPXX where  SQID=#{sqid}
+    </select>
+
+    <select id="getMedicalDeviceDataRLJYBA" resultMap="RLJYBAResultMap">
+        SELECT *  from ${tableName} where flag=0 order by sqsxdm ASC
+    </select>
+
+    <select id="getMedicalDeviceDataJYXK" resultMap="JYXKResultMap">
+        SELECT *  from ${tableName} where flag=0 order by sqsxdm ASC
+    </select>
+
+    <update id="updateMedicalDeviceData">
+        update ${tableName}
+        <set>
+            <if test="flag != null">flag=#{flag},</if>
+            <if test="udate != null">udate=#{udate},</if>
+            <if test="errinfo != null">errinfo=#{errinfo}</if>
+        </set>
+        where sqid=#{sqid}
+    </update>
+</mapper>

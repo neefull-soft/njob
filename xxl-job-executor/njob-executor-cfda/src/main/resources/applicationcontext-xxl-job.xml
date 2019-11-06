@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="fileEncoding" value="utf-8"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:xxl-job-executor.properties</value>
+                <value>classpath*:druid.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ********************************* 基础配置 ********************************* -->
+
+    <!-- 配置01、JobHandler 扫描路径 -->
+    <context:component-scan base-package="com.xxl.job.executor.service.jobhandler"/>
+
+    <!-- 配置02、执行器 -->
+    <bean id="xxlJobExecutor" class="com.xxl.job.core.executor.XxlJobExecutor" init-method="start"
+          destroy-method="destroy">
+        <!-- 执行器注册中心地址[选填]，为空则关闭自动注册 -->
+        <property name="adminAddresses" value="${xxl.job.admin.addresses}"/>
+        <!-- 执行器AppName[选填]，为空则关闭自动注册 -->
+        <property name="appName" value="${xxl.job.executor.appname}"/>
+        <!-- 执行器IP[选填]，为空则自动获取 -->
+        <property name="ip" value="${xxl.job.executor.ip}"/>
+        <!-- 执行器端口号[选填]，为空则自动获取 -->
+        <property name="port" value="${xxl.job.executor.port}"/>
+        <!-- 访问令牌[选填]，非空则进行匹配校验 -->
+        <property name="accessToken" value="${xxl.job.accessToken}"/>
+        <!-- 执行器日志路径[选填]，为空则使用默认路径 -->
+        <property name="logPath" value="${xxl.job.executor.logpath}"/>
+        <!-- 日志保存天数[选填]，值大于3时生效 -->
+        <property name="logRetentionDays" value="${xxl.job.executor.logretentiondays}"/>
+    </bean>
+    <!--druid数据源配置-->
+     <!--<bean id="dsMySQL" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+         &lt;!&ndash; 基本属性 url、user、password &ndash;&gt;
+         <property name="driverClassName" value="${spring.datasource.mysql.driverClassName}"/>
+         <property name="url" value="${spring.datasource.mysql.url}"/>
+         <property name="username" value="${spring.datasource.mysql.username}"/>
+         <property name="password" value="${spring.datasource.mysql.password}"/>
+         &lt;!&ndash; 配置监控统计拦截的filters &ndash;&gt;
+         <property name="filters" value="${spring.datasource.filters}"/>
+         &lt;!&ndash; 配置初始化大小、最小、最大 &ndash;&gt;
+         <property name="maxActive" value="${spring.datasource.maxActive}"/>
+         <property name="initialSize" value="${spring.datasource.initialSize}"/>
+         <property name="minIdle" value="${spring.datasource.minIdle}"/>
+         &lt;!&ndash; 配置获取连接等待超时的时间 &ndash;&gt;
+         <property name="maxWait" value="${spring.datasource.maxWait}"/>
+         &lt;!&ndash; 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 &ndash;&gt;
+         <property name="timeBetweenEvictionRunsMillis" value="${spring.datasource.timeBetweenEvictionRunsMillis}"/>
+         &lt;!&ndash; 配置一个连接在池中最小生存的时间，单位是毫秒 &ndash;&gt;
+         <property name="minEvictableIdleTimeMillis" value="${spring.datasource.minEvictableIdleTimeMillis}"/>
+         <property name="testWhileIdle" value="${spring.datasource.testWhileIdle}"/>
+         <property name="testOnBorrow" value="${spring.datasource.testOnBorrow}"/>
+         <property name="testOnReturn" value="${spring.datasource.testOnReturn}"/>
+         &lt;!&ndash; 打开PSCache，并且指定每个连接上PSCache的大小 &ndash;&gt;
+         <property name="poolPreparedStatements" value="${spring.datasource.poolPreparedStatements}"/>
+         <property name="maxOpenPreparedStatements" value="${spring.datasource.maxOpenPreparedStatements}"/>
+         &lt;!&ndash;测试连接&ndash;&gt;
+         <property name="validationQuery" value="${spring.datasource.validationQuery}"/>
+         <property name="connectionProperties" value="${spring.datasource.connectionProperties}"/>
+     </bean>-->
+
+    <!--druid数据源配置-->
+    <bean id="dsOracle" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="${spring.datasource.oracle.driverClassName}"/>
+        <property name="url" value="${spring.datasource.oracle.url}"/>
+        <property name="username" value="${spring.datasource.oracle.username}"/>
+        <property name="password" value="${spring.datasource.oracle.password}"/>
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${spring.datasource.filters}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="maxActive" value="${spring.datasource.maxActive}"/>
+        <property name="initialSize" value="${spring.datasource.initialSize}"/>
+        <property name="minIdle" value="${spring.datasource.minIdle}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${spring.datasource.maxWait}"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${spring.datasource.timeBetweenEvictionRunsMillis}"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${spring.datasource.minEvictableIdleTimeMillis}"/>
+        <property name="testWhileIdle" value="${spring.datasource.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${spring.datasource.testOnBorrow}"/>
+        <property name="testOnReturn" value="${spring.datasource.testOnReturn}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="${spring.datasource.poolPreparedStatements}"/>
+        <property name="maxOpenPreparedStatements" value="${spring.datasource.maxOpenPreparedStatements}"/>
+        <!--测试连接-->
+        <property name="validationQuery" value="${spring.datasource.validationQuery}"/>
+        <property name="connectionProperties" value="${spring.datasource.connectionProperties}"/>
+    </bean>
+
+    <!--Mybatis配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dsOracle"/>
+        <property name="mapperLocations" value="classpath:mybatis-mapper/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.xxl.job.executor.service.jobhandler.dao"/>
+    </bean>
+
+    <!-- ********************************* part 2 :for tx ********************************* -->
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dsOracle"/>
+    </bean>
+</beans>

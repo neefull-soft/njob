@@ -1,5 +1,6 @@
 package com.xxl.job.executor.service.jobhandler.utils;
 
+import com.xxl.job.core.log.XxlJobLogger;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -59,9 +60,11 @@ public class HttpClientCallSoapUtil {
                 retStr = EntityUtils.toString(httpEntity, "UTF-8");
                 logger.info("response:" + retStr);
             }
+            XxlJobLogger.log("retStr：" + retStr);
             // 释放资源
             closeableHttpClient.close();
         } catch (Exception e) {
+            e.printStackTrace();
             logger.error("exception in doPostSoap1_1", e);
         }
         return retStr;

@@ -10,12 +10,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("subDataNode")
 public class MedInstruYlqxwtscbaCpZb implements java.io.Serializable{
 
-    private String QYMC_WTF;
-    private String QYMC_STF;
-    private String CPMC;
-    private String CPZCH;
-    private String WTQX;
-    private String BZ;
+    private String QYMC_WTF="";
+    private String QYMC_STF="";
+    private String CPMC="";
+    private String CPZCH="";
+    private String WTQX="";
+    private String BZ="";
 
     public String getQYMC_WTF() {
         return QYMC_WTF;

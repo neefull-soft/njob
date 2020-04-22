@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.job.executor.service.jobhandler.dao.NationalShareDao">
+
+    <update id="updateUploadState">
+        update ${tableName}
+        <set>
+            <if test="flag != null">UP_STATE=#{flag},</if>
+            <if test="udate != null">UPLOAD_TIME=#{udate},</if>
+            <if test="errinfo != null">ERR_COMMENTS=#{errinfo}</if>
+        </set>
+        where ID=#{sqid} and UP_STATE = '0'
+    </update>
+
+
+    <select id="getYpjyLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYpjy">
+        select t.* from T_EXC_GJ_YPJY t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYpscLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYpsc">
+        select t.* from T_EXC_GJ_YPSC t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYpgmpLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYpGMP">
+        select t.* from T_EXC_GJ_YPGMP t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYpgspLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYpGSP">
+        select t.* from T_EXC_GJ_YPGSP t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYlqxscLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYlqxsc">
+        select t.* from T_EXC_GJ_YLQXSC t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYlqxjyLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYlqxjy">
+        select t.* from T_EXC_GJ_YLQXJY t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYlqxcpbazcLst" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.NationalShareYlqxcpbazc">
+        select t.* from T_EXC_GJ_YLQXCPBAZC t where t.UP_STATE = '0'
+    </select>
+</mapper>

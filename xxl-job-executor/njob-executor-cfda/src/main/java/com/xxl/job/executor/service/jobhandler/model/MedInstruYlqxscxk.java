@@ -1,7 +1,6 @@
 package com.xxl.job.executor.service.jobhandler.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 /**
  * 医疗器械生产许可（备案）
  * @program: xxl-job
@@ -11,27 +10,27 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("dataNode")
 public class MedInstruYlqxscxk implements java.io.Serializable{
 
-    private String QYMC;
-    private String ZZJGDM;
-    private String QYLX;
-    private String ZS;
-    private String SCDZCLOB;
-    private String FRDB;
-    private String QYFZRXM;
-    private String QXQYSCFW;
-    private String YLQXSCXKZH;
-    private String FZRQ;
-    private String ZJZSYXQZZRQ;
-    private String FZJG;
-    private String QYSZS;
-    private String QYSZSHI;
-    private String QYSZX;
-    private String PPZT;
-    private String BGLSJL;
-    private String BZ;
-    private String YXKZBH;
-    private String ZTBZYY;
-    private String ZTBZSJ;
+    private String QYMC="";
+    private String ZZJGDM="";
+    private String QYLX="";
+    private String ZS="";
+    private String SCDZCLOB="";
+    private String FRDB="";
+    private String QYFZRXM="";
+    private String QXQYSCFW="";
+    private String YLQXSCXKZH="";
+    private String FZRQ="";
+    private String ZJZSYXQZZRQ="";
+    private String FZJG="";
+    private String QYSZS="";
+    private String QYSZSHI="";
+    private String QYSZX="";
+    private String PPZT="";
+    private String BGLSJL="";
+    private String BZ="";
+    private String YXKZBH="";
+    private String ZTBZYY="";
+    private String ZTBZSJ="";
 
     public String getQYMC() {
         return QYMC;

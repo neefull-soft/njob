@@ -55,29 +55,11 @@ public class MedicalInstrumentsYlqxscxkStrategy extends MedicalInstrumentsStrate
                     }
                 }
                 xmlStr += "</body>";
-
                 response = CallXmlUtils.sendCallRequest(url,xmlStr,MedicalInstrumentsConfiguration.getAdminConfig().getPassword(),
                         MedicalInstrumentsConfiguration.getAdminConfig().getUsername(),"医疗器械生产许可（备案）");
                 XxlJobLogger.log("["+lstYlqxscxk.get(i)+"]请求结果:"+response);
-
-                break;
-
-
-//                xmlStr = "是否是电风扇";
-//                String reqXml = MedicalInstrumentsConfiguration.getAdminConfig().getSoapReqXml("医疗器械生产许可（备案）",xmlStr);
-//                System.out.println(reqXml);
-//                response = HttpClientCallSoapUtil.doPostSoap1_1(MedicalInstrumentsConfiguration.getAdminConfig().getYlqxscxkUrl(),reqXml,"");
-//                System.out.println(response);
-//                SOAPMessage soapMessage = HttpClientCallSoapUtil.formatSoapString(xmlStr);
-//                SOAPBody body = soapMessage.getSOAPBody();
-//                Iterator<SOAPElement> iterator = body.getChildElements();
-//                String result = getResult(iterator, "resultType");
-//                System.out.println(result);
-//                String sysMessage = getResult(iterator, "sysMessage");
-//                System.out.println(sysMessage);
-
-//                processResponse(medicalInstrumentsService, response,
-//                        MedicalInstrumentsType.MEDICAL_INSTRUMENTS_TYPE_YLQXSCXK.getName(),lstYlqxscxk.get(i));
+                processResponse(medicalInstrumentsService, response,
+                        MedicalInstrumentsType.MEDICAL_INSTRUMENTS_TYPE_YLQXSCXK.getName(),lstYlqxscxk.get(i));
             }
             XxlJobLogger.log("医疗器械生产许可(备案)任务执行了！！");
             return ReturnT.SUCCESS;

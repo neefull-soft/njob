@@ -135,7 +135,7 @@
             <result column="GMPRZSCOPE" property="gmpRzScope"></result>
         </collection>
     </resultMap>
-    
+
     <resultMap id="YPJBSCTJHSCFWMap" type="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkscfw">
         <result column="SQID" property="compId"></result>
         <result column="ADDRDETAIL" property="addrDetail"></result>
@@ -147,7 +147,7 @@
         <result column="GETGMPCERTIFICATE" property="getGmpCertificate"></result>
         <result column="GMPRZSCOPE" property="gmpRzScope"></result>
     </resultMap>
-    
+
     <resultMap id="YPTGJWYPGMPRZMap" type="com.xxl.job.executor.service.jobhandler.model.PharmPduPmtYpscxkGmp">
         <result column="SQID" property="compId"></result>
         <result column="AUTHNAME" property="authName"></result>
@@ -167,7 +167,7 @@
         nvl(t.ENTERPRISEHEAD,'无') as enterpriseHead,nvl(t.QUALITYHEAD,'无') as qualityHead,nvl(t.PROVINCEAREANAME,'上海市') as provinceAreaName,
         nvl(b.VALUE,'无') as cityAreaName,SQID id from T_EXC_GJ_YLJGZJXKZXT t
         left join DICT_QXDM b on t.CITYAREANAME=b.CODE
-        where trunc(to_date(t.DOWNLOAD_TIME,'yyyy-mm-dd hh24:mi:ss')) = trunc(sysdate) and (t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null)
+        where trunc(to_date(t.DOWNLOAD_TIME,'yyyy-mm-dd hh24:mi:ss')) = trunc(sysdate) and t.UP_STATE = '0'
     </select>
 
     <update id="updateYljgzjAndYpscXkStatus">
@@ -196,7 +196,7 @@
       from t_api_ypsc_company_license t
       where t.SQID is not null
       and (t.DOTYPE = '1' or t.DOTYPE = '2')
-      and (t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null) order by t.download_time asc
+      and t.UP_STATE = '0' order by t.download_time asc
     </select>
 
     <select id="getYpscxkAllDateOne" parameterType="java.lang.String" resultMap="YPSCXKResultMap">
@@ -257,6 +257,6 @@
       from t_api_ypsc_company_license t
       where t.SQID is not null
       and (t.DOTYPE = '3' or t.DOTYPE = '4')
-      and (t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null) order by t.download_time asc
+      and t.UP_STATE = '0' order by t.download_time asc
     </select>
 </mapper>

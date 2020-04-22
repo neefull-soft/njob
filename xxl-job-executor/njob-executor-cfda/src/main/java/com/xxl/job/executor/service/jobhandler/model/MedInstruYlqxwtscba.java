@@ -10,25 +10,25 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("dataNode")
 public class MedInstruYlqxwtscba implements java.io.Serializable{
 
-    private String QYMC_WTF;
-    private String SHXYDM_WTF;
-    private String SCXK_WTF;
-    private String ZS_WTF;
-    private String SCDZ_WTF;
-    private String FDDBR_WTF;
-    private String QYFZR_WTF;
-    private String QYSZS_WTF;
-    private String QYMC_STF;
-    private String SHXYDM_STF;
-    private String SCXK_STF;
-    private String ZS_STF;
-    private String SCDZ_STF;
-    private String FDDBR_STF;
-    private String QYFZR_STF;
-    private String QYSZS_STF;
-    private String BARQ;
-    private String BABM;
-    private String BZ;
+    private String QYMC_WTF="";
+    private String SHXYDM_WTF="";
+    private String SCXK_WTF="";
+    private String ZS_WTF="";
+    private String SCDZ_WTF="";
+    private String FDDBR_WTF="";
+    private String QYFZR_WTF="";
+    private String QYSZS_WTF="";
+    private String QYMC_STF="";
+    private String SHXYDM_STF="";
+    private String SCXK_STF="";
+    private String ZS_STF="";
+    private String SCDZ_STF="";
+    private String FDDBR_STF="";
+    private String QYFZR_STF="";
+    private String QYSZS_STF="";
+    private String BARQ="";
+    private String BABM="";
+    private String BZ="";
 
     public String getQYMC_WTF() {
         return QYMC_WTF;

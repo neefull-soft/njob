@@ -99,6 +99,7 @@ public class PharmProductPermitYpscxkStartegy extends PharmaceuticalProductionPe
                         PharmProductPermitConfiguration.getAdminConfig().getSendAccount(),
                         PharmProductPermitConfiguration.getAdminConfig().getSendPwd());
                 System.out.println("["+entYpscxk.getCompId()+"]请求结果:"+response);
+                XxlJobLogger.log("请求参数为:"+obj.get("param").toString());
                 XxlJobLogger.log("["+entYpscxk.getCompId()+"]请求结果:"+response);
                 LOGGER.info("["+entYpscxk.getCompId()+"]请求结果:"+response);
                 processResponse(pharmaceuticalProductionPermitService, response,

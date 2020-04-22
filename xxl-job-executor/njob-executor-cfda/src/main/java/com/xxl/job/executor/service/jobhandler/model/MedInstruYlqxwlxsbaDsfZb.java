@@ -10,10 +10,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("subDataNode")
 public class MedInstruYlqxwlxsbaDsfZb implements java.io.Serializable{
 
-    private String SHXYDM;
-    private String DSFPTBAFPTMC;
-    private String PZBH;
-    private String BZ;
+    private String SHXYDM="";
+    private String DSFPTBAFPTMC="";
+    private String PZBH="";
+    private String BZ="";
 
     public String getSHXYDM() {
         return SHXYDM;

@@ -33,8 +33,8 @@ import static com.xxl.job.executor.service.jobhandler.utils.HttpClientCallSoapUt
  * 国家总局任务处理器
  */
 @Component
-@JobHandler("CFDAJobHandler")
-public class CFDAShareDataHandler extends IJobHandler {
+@JobHandler("CFDAJob2Handler")
+public class CFDAShareDataNotCorrespHandler extends IJobHandler {
     @Autowired
     CfdaService cfdaService;
 
@@ -54,16 +54,15 @@ public class CFDAShareDataHandler extends IJobHandler {
             //获取最大时间
             String maxDate = cfdaService.getMaxDate(jsonObject.getString("tableName"), jsonObject.getString("dateFieldName"), "%Y-%m-%d");
             XxlJobLogger.log(maxDate);
+            // String maxDate = "2018-12-26";
             //若传入主键id，则查询主键名称以及当前最大的id
             Integer currentMaxId = null;
             if(jsonObject.get("primaryKey") != null){
                 currentMaxId = cfdaService.getMaxPrimaryKeyNumber(jsonObject.getString("tableName"),jsonObject.getString("primaryKey"));
             }
-//             String maxDate = "2020-03-27";
             //获取后一天的时间
             String dateParam = DateUtil.getSpecifiedDayAfter(maxDate);
             final String requestStr = CFDAConfiguration.getAdminConfig().getSoapReqXml(dateParam, jsonObject.getString("dbNameCN"));
-            XxlJobLogger.log("requestStr：" + requestStr);
             //采用SOAP1.1调用服务端
             SOAPMessage msg = HttpClientCallSoapUtil.formatSoapString(HttpClientCallSoapUtil.doPostSoap1_1(CFDAConfiguration.getAdminConfig().getUrl(), requestStr, ""));
             SOAPBody body = msg.getSOAPBody();
@@ -76,10 +75,10 @@ public class CFDAShareDataHandler extends IJobHandler {
             List<Map<String, String>> paramsList = null;
 
             if(jsonObject.get("primaryKey") != null){
-                paramsList = parseXmlToParams(result, "row", jsonObject.getString("modelName"),
+                paramsList = parseXmlToParams(result, "row", jsonObject.getString("modelName"),jsonObject.getString("tableName"),
                         jsonObject.getString("primaryKey"), currentMaxId);
             }else{
-                paramsList = parseXmlToParams(result, "row", jsonObject.getString("modelName"));
+                paramsList = parseXmlToParams(result, "row", jsonObject.getString("modelName"),jsonObject.getString("tableName"));
             }
             // daService.batchSave("t_share_gcyp",paramsList); 批量插入存在问题，改用单条插入的方式
             for (Map<String, String> item : paramsList) {
@@ -88,7 +87,7 @@ public class CFDAShareDataHandler extends IJobHandler {
             XxlJobLogger.log("解析入库数据量：" + paramsList.size());
         } catch (Exception e) {
             e.printStackTrace();
-            XxlJobLogger.log(e.toString());
+            XxlJobLogger.log(e.getMessage());
             return ReturnT.FAIL;
         }
         return ReturnT.SUCCESS;
@@ -102,7 +101,7 @@ public class CFDAShareDataHandler extends IJobHandler {
      * @return
      * @throws IOException
      */
-    private List<Map<String, String>> parseXmlToParams(String xml, String childTagName, String className) throws IOException, ClassNotFoundException, DocumentException {
+    private List<Map<String, String>> parseXmlToParams(String xml, String childTagName, String className, String tableName) throws IOException, ClassNotFoundException, DocumentException {
         List paramsList = new ArrayList();
         if (xml != null && xml != "") {
             Class clazz = Class.forName(className);
@@ -113,26 +112,44 @@ public class CFDAShareDataHandler extends IJobHandler {
                     fieldList.add(fie);
                 }
             }
-            StringReader read = new StringReader(xml);
-            InputSource source = new InputSource(read);
-            //创建一个新的SAXBuilder
-            SAXReader sr = new SAXReader();
-            Document doc = sr.read(source);
-            //取的根元素
-            Element root = doc.getRootElement();
-            List<Element> lEls = root.elements(childTagName);
-            //循环每个值节点
-            for (Element e : lEls) {
-                Map<String, String> valueMap = new HashMap<String, String>();
-                if (!fieldList.isEmpty()) {
-                    for (Field field : fieldList) {
-                        Element child = e.element(field.getName().toUpperCase());
-                        if (child != null) {
-                            valueMap.put(field.getName(), child.getStringValue());
+                StringReader read = new StringReader(xml);
+                InputSource source = new InputSource(read);
+                //创建一个新的SAXBuilder
+                SAXReader sr = new SAXReader();
+                Document doc = sr.read(source);
+                //取的根元素
+                Element root = doc.getRootElement();
+                List<Element> lEls = root.elements(childTagName);
+                //循环每个值节点
+            if(tableName.equals("t_share_gcylqx")){
+                for (Element e : lEls) {
+                    Map<String, String> valueMap = new HashMap<String, String>();
+                    if (!fieldList.isEmpty()) {
+                        for (Field field : fieldList) {
+                            Element child = e.element(field.getName().toUpperCase());
+                            if (child != null) {
+                                if(field.getName().toUpperCase().equals("YLQXFLBM")){
+                                    valueMap.put("CPFLBM", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("CPLX")){
+                                    valueMap.put("CPFL", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("YLQXXNJGZC")){
+                                    valueMap.put("CPXNJGJZC", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("SHXYDM")){
+                                    valueMap.put("ZZJGDM", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("BGNR")){
+                                    valueMap.put("BGQK", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("YLQXJGTZ")){
+                                    valueMap.put("TYJCXG", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("ZCRSZS")){
+                                    valueMap.put("QUXIAN", child.getStringValue());
+                                }else{
+                                    valueMap.put(field.getName(), child.getStringValue());
+                                }
+                            }
                         }
                     }
+                    paramsList.add(valueMap);
                 }
-                paramsList.add(valueMap);
             }
         }
         return paramsList;
@@ -146,7 +163,7 @@ public class CFDAShareDataHandler extends IJobHandler {
      * @return
      * @throws IOException
      */
-    private List<Map<String, String>> parseXmlToParams(String xml, String childTagName, String className, String primaryKeyName, Integer currentMaxId) throws IOException, ClassNotFoundException, DocumentException {
+    private List<Map<String, String>> parseXmlToParams(String xml, String childTagName, String className, String tableName, String primaryKeyName, Integer currentMaxId) throws IOException, ClassNotFoundException, DocumentException {
         List paramsList = new ArrayList();
         if (xml != null && xml != "") {
             Class clazz = Class.forName(className);
@@ -166,19 +183,37 @@ public class CFDAShareDataHandler extends IJobHandler {
             Element root = doc.getRootElement();
             List<Element> lEls = root.elements(childTagName);
             //循环每个值节点
-            for (Element e : lEls) {
-                currentMaxId++;
-                Map<String, String> valueMap = new HashMap<String, String>();
-                if (!fieldList.isEmpty()) {
-                    for (Field field : fieldList) {
-                        Element child = e.element(field.getName().toUpperCase());
-                        if (child != null) {
-                            valueMap.put(field.getName(), child.getStringValue());
+            if(tableName.equals("t_share_gcylqx")){
+                for (Element e : lEls) {
+                    currentMaxId++;
+                    Map<String, String> valueMap = new HashMap<String, String>();
+                    if (!fieldList.isEmpty()) {
+                        for (Field field : fieldList) {
+                            Element child = e.element(field.getName().toUpperCase());
+                            if (child != null) {
+                                if(field.getName().toUpperCase().equals("YLQXFLBM")){
+                                    valueMap.put("CPFLBM", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("CPLX")){
+                                    valueMap.put("CPFL", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("YLQXXNJGZC")){
+                                    valueMap.put("CPXNJGJZC", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("SHXYDM")){
+                                    valueMap.put("ZZJGDM", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("BGNR")){
+                                    valueMap.put("BGQK", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("YLQXJGTZ")){
+                                    valueMap.put("TYJCXG", child.getStringValue());
+                                }else if(field.getName().toUpperCase().equals("ZCRSZS")){
+                                    valueMap.put("QUXIAN", child.getStringValue());
+                                }else{
+                                    valueMap.put(field.getName(), child.getStringValue());
+                                }
+                            }
                         }
+                        valueMap.put(primaryKeyName,String.valueOf(currentMaxId));
                     }
-                    valueMap.put(primaryKeyName,String.valueOf(currentMaxId));
+                    paramsList.add(valueMap);
                 }
-                paramsList.add(valueMap);
             }
         }
         return paramsList;

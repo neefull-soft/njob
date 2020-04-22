@@ -14,6 +14,37 @@
         </foreach>
     </insert>
 
+    <insert id="saveYlqxscqy" parameterType="java.util.Map">
+        insert into t_share_ylqxscqy (id,fzjg , fzrq , ylqxscxkzh , zcdz , ztbzsj , qymc , ppzt , ztbzyy , yxkzbh , sjzhxgsj , scdzclob ,
+        frdb , qyfzrxm , zjzsyxqzzrq , dzsqzzzm , zzjgdm,qxqyscfw,bglsjl)
+        values (#{id,jdbcType=NUMERIC},#{fzjg,jdbcType=VARCHAR},#{fzrq,jdbcType=VARCHAR},#{ylqxscxkzh,jdbcType=VARCHAR},#{zcdz,jdbcType=VARCHAR},
+        #{ztbzsj,jdbcType=VARCHAR},#{qymc,jdbcType=VARCHAR},#{ppzt,jdbcType=VARCHAR},#{ztbzyy,jdbcType=VARCHAR},#{yxkzbh,jdbcType=VARCHAR},
+        #{sjzhxgsj,jdbcType=VARCHAR},#{scdzclob,jdbcType=VARCHAR},#{frdb,jdbcType=VARCHAR},#{qyfzrxm,jdbcType=VARCHAR},#{zjzsyxqzzrq,jdbcType=VARCHAR},
+        #{dzsqzzzm,jdbcType=VARCHAR},#{zzjgdm,jdbcType=VARCHAR},#{qxqyscfw,jdbcType=CLOB},#{bglsjl,jdbcType=CLOB})
+    </insert>
+
+    <insert id="saveYlqxjyqy" parameterType="java.util.Map">
+        insert into t_share_ylqxjyqy (id,zyjsrs,zcdz,qymc,ppzt,ckdz,yxkzbh,sjzhxgsj,jydz,qyfzrxm,zjzsyxqzzrq,zzjgdm,zgzs,xkzbh,fzjg,lxdh,fzrq,jycsmj,
+        lxr,ckmj,ztbzyy,frdb,zlfzrxm,dzsqzzzm,jyfw,bglsjl) values
+        (#{id,jdbcType=NUMERIC},#{zyjsrs,jdbcType=VARCHAR},#{zcdz,jdbcType=VARCHAR},#{qymc,jdbcType=VARCHAR},#{ppzt,jdbcType=VARCHAR},
+        #{ckdz,jdbcType=VARCHAR},#{yxkzbh,jdbcType=VARCHAR},#{sjzhxgsj,jdbcType=VARCHAR},#{jydz,jdbcType=VARCHAR},#{qyfzrxm,jdbcType=VARCHAR},
+        #{zjzsyxqzzrq,jdbcType=VARCHAR},#{zzjgdm,jdbcType=VARCHAR},#{zgzs,jdbcType=VARCHAR},#{xkzbh,jdbcType=VARCHAR},
+        #{fzjg,jdbcType=VARCHAR},#{lxdh,jdbcType=VARCHAR},#{fzrq,jdbcType=VARCHAR},#{jycsmj,jdbcType=VARCHAR},#{lxr,jdbcType=VARCHAR},
+        #{ckmj,jdbcType=VARCHAR},#{ztbzyy,jdbcType=VARCHAR},#{frdb,jdbcType=VARCHAR},#{zlfzrxm,jdbcType=VARCHAR},#{dzsqzzzm,jdbcType=VARCHAR},
+        #{jyfw,jdbcType=CLOB},#{bglsjl,jdbcType=CLOB})
+    </insert>
+
+    <insert id="saveGcylqx" parameterType="java.util.Map">
+        insert into t_share_gcylqx (id,sczdz,fj,pzyxq,cxcp,cplb,QUXIAN,ppzt,scdz,sjzhxgsj,spbm,CPFLBM,bgrq,CPFL,cpmc,ZZJGDM,zcsqr,zczh,TYJCXG,
+        yzczh,pzrq, cpyxq,ggxh,CPXNJGJZC,cpsyfw,BGQK,bcyq,bz)
+        values (#{id,jdbcType=NUMERIC},#{sczdz,jdbcType=VARCHAR},#{fj,jdbcType=VARCHAR},#{pzyxq,jdbcType=VARCHAR},
+        #{cxcp,jdbcType=VARCHAR},#{cplb,jdbcType=VARCHAR},#{QUXIAN,jdbcType=VARCHAR},#{ppzt,jdbcType=VARCHAR},#{scdz,jdbcType=VARCHAR},
+        #{sjzhxgsj,jdbcType=VARCHAR},#{spbm,jdbcType=VARCHAR},#{CPFLBM,jdbcType=VARCHAR},#{bgrq,jdbcType=VARCHAR},#{CPFL,jdbcType=VARCHAR},
+        #{cpmc,jdbcType=VARCHAR},#{ZZJGDM,jdbcType=VARCHAR},#{zcsqr,jdbcType=VARCHAR},#{zczh,jdbcType=VARCHAR},#{TYJCXG,jdbcType=VARCHAR},
+        #{yzczh,jdbcType=VARCHAR},#{pzrq,jdbcType=VARCHAR},#{cpyxq,jdbcType=CLOB},#{ggxh,jdbcType=CLOB},#{CPXNJGJZC,jdbcType=CLOB},
+        #{cpsyfw,jdbcType=CLOB},#{BGQK,jdbcType=CLOB},#{bcyq,jdbcType=CLOB},#{bz,jdbcType=CLOB})
+    </insert>
+
     <insert id="batchSave" parameterType="java.util.List">
         <foreach collection="paramsList" item="param1" index="index" separator=";">
             insert into ${tableName}
@@ -31,4 +62,7 @@
 		SELECT substr(max(${dataFieldName}),0,10) maxDate FROM ${tableName}
     </select>
 
+    <select id="getMaxPrimaryKeyNumber" resultType="integer">
+        select max(${primaryKeyName}) from ${tableName}
+    </select>
 </mapper>

@@ -1,8 +1,8 @@
-package com.xxl.job.executor.service.jobhandler.service.startegy;
+package com.xxl.job.executor.service.jobhandler.service.startegy.nationalShare;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.executor.service.jobhandler.service.MedicalInstrumentsService;
+import com.xxl.job.executor.service.jobhandler.service.NationalShareService;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -15,17 +15,17 @@ import java.util.Date;
  * @author: xi.chen
  * @create: 2019-08-27 15:33
  **/
-public abstract class MedicalInstrumentsStrategy {
+public abstract class NationalShareStrategy {
     public abstract ReturnT<String> doAction() throws Exception;
 
     /**
      * 处理接口返回结果
-     * @param medicalInstrumentsService
+     * @param nationalShareService
      * @param response
      * @param tableName
      * @param sqId
      */
-    public void processResponse(MedicalInstrumentsService medicalInstrumentsService,
+    public void processResponse(NationalShareService nationalShareService,
                                 String response, String tableName, String sqId){
         String flag = "0";
         try {
@@ -40,29 +40,10 @@ public abstract class MedicalInstrumentsStrategy {
             }else{
                 flag = "-1";
             }
-            medicalInstrumentsService.updateYlqxUploadState(tableName, sqId, udate, flag, response);
+            nationalShareService.updateUploadState(tableName, sqId, udate, flag, errormsg);
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 处理接口返回结果-医疗器械生产企业检查
-     * @param medicalInstrumentsService
-     * @param response
-     * @param sqId
-     */
-    public void processResponseV2(MedicalInstrumentsService medicalInstrumentsService,
-                                String response, String sqId){
-        String flag = "0";
-        String errorcode = this.getValByKey(response, "code");
-        String udate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        if("000000".equals(errorcode)){
-            flag = "1";
-        }else{
-            flag = "-1";
-        }
-        medicalInstrumentsService.updateYlqxJCUploadState(sqId, udate, flag, errorcode);
     }
 
     /**

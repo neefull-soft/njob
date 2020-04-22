@@ -90,6 +90,7 @@ public class PharmProductPermitYpscxkChangeStartegy extends PharmaceuticalProduc
             lstParam.add(requestEnt);
             obj.put("param",lstParam);
             response = HttpUtils.sendHeaderPost(postUrl, obj.get("param").toString(),postAccount,postPassword);
+            XxlJobLogger.log("请求参数为:"+obj.get("param").toString());
             XxlJobLogger.log("用户{"+postAccount+"}密码{"+postPassword+"}["+entYpscBg.getSqId()+"]请求结果:"+response);
             LOGGER.info("用户{"+postAccount+"}密码{"+postPassword+"}["+entYpscBg.getSqId()+"]请求结果:"+response);
             processResponse(pharmaceuticalProductionPermitService, response,

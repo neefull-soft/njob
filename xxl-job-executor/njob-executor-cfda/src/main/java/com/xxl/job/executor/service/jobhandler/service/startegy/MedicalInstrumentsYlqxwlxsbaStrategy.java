@@ -46,7 +46,7 @@ public class MedicalInstrumentsYlqxwlxsbaStrategy extends MedicalInstrumentsStra
             XxlJobLogger.log("请求地址:"+url);
             for(int i=0;i<lstYlqxwlxsba.size();i++){
                 String xmlStr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-                        "<!DOCTYPE body SYSTEM \"http://10.64.1.135/dtd/ylqxwtscba.dtd\">\n" +
+                        "<!DOCTYPE body SYSTEM \"http://10.64.1.135/dtd/ylqxwlxsba.dtd\">\n" +
                         "<body>\n";
                 MedInstruYlqxwlxsba medInstruYlqxwlxsba = medicalInstrumentsService.getYlqxwlxsbaBySqId(lstYlqxwlxsba.get(i));
                 xmlStr = xmlStr + Xml4BeanUtils.parseBeanToXmlV2(medInstruYlqxwlxsba) + "\n";

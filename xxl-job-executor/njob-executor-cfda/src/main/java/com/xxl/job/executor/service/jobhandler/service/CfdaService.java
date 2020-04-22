@@ -12,6 +12,14 @@ public interface CfdaService {
     public String getMaxDate(String tableName, String dataFieldName, String pattern);
 
     /**
+     * 获取数据库最大主键值
+     * @param tableName
+     * @param primaryKeyName
+     * @return
+     */
+    public Integer getMaxPrimaryKeyNumber(String tableName, String primaryKeyName);
+
+    /**
      * 保存数据
      * 根据不同类型，自行实现处理方法
      *

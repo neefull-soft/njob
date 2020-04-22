@@ -10,24 +10,24 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("dataNode")
 public class MedInstruYlqxwljyfwdsf implements java.io.Serializable{
 
-    private String QYMC;
-    private String SHXYDM;
-    private String BABH;
-    private String ZS;
-    private String BGCS;
-    private String FDDBR;
-    private String ZYFZR;
-    private String ZLAQGLR;
-    private String WZMC;
-    private String WLKHDYYCXM;
-    private String WZYM;
-    private String WZDZ_IP;
-    private String FWQCFDZ;
-    private String FJYXHLWXXFWBABH;
-    private String QYSZS;
-    private String BABM;
-    private String BARQ;
-    private String BZ;
+    private String QYMC="";
+    private String SHXYDM="";
+    private String BABH="";
+    private String ZS="";
+    private String BGCS="";
+    private String FDDBR="";
+    private String ZYFZR="";
+    private String ZLAQGLR="";
+    private String WZMC="";
+    private String WLKHDYYCXM="";
+    private String WZYM="";
+    private String WZDZ_IP="";
+    private String FWQCFDZ="";
+    private String FJYXHLWXXFWBABH="";
+    private String QYSZS="";
+    private String BABM="";
+    private String BARQ="";
+    private String BZ="";
 
     public String getQYMC() {
         return QYMC;

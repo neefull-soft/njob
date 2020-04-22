@@ -2,6 +2,8 @@ package com.xxl.job.executor.service.jobhandler.service.impl;
 
 import com.xxl.job.executor.service.jobhandler.dao.MedicalInstrumentsDao;
 import com.xxl.job.executor.service.jobhandler.model.*;
+import com.xxl.job.executor.service.jobhandler.model.nationalShare.YPCKXSZMJKGJModel;
+import com.xxl.job.executor.service.jobhandler.model.nationalShare.YPCKXSZMModel;
 import com.xxl.job.executor.service.jobhandler.service.MedicalInstrumentsService;
 import org.springframework.stereotype.Service;
 
@@ -170,5 +172,24 @@ public class MedicalInstrumentsServiceImpl implements MedicalInstrumentsService 
     @Override
     public List<MedInstruYlqxjcJcz> getYlqxjcJczByRwsbh(String rwsbh) {
         return medicalInstrumentsDao.getYlqxjcJczByRwsbh(rwsbh);
+    }
+
+    /**
+     * 获取未提交的药品出口销售证明数据
+     * @return
+     */
+    @Override
+    public List<YPCKXSZMModel> getUnUploadYpckxszm() {
+        return medicalInstrumentsDao.getUnUploadYpckxszm();
+    }
+
+    /**
+     * 根据sqId获取关联的进口国家数据
+     * @param sqId
+     * @return
+     */
+    @Override
+    public List<YPCKXSZMJKGJModel> getYpckxszmJkgjBySqId(String sqId) {
+        return medicalInstrumentsDao.getYpckxszmJkgjBySqId(sqId);
     }
 }

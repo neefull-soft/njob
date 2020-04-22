@@ -10,7 +10,7 @@
             <if test="udate != null">UPLOAD_TIME=#{udate},</if>
             <if test="errinfo != null">ERR_COMMENTS=#{errinfo}</if>
         </set>
-        where SQID=#{sqid}
+        where SQID=#{sqid} and UP_STATE = '0'
     </update>
 
     <update id="updateYlqxJCUploadState">
@@ -20,16 +20,16 @@
             <if test="udate != null">UPLOAD_TIME=#{udate},</if>
             <if test="errinfo != null">ERR_COMMENTS=#{errinfo}</if>
         </set>
-        where ZJ=#{sqid}
+        where ZJ=#{sqid} and UP_STATE = '0'
     </update>
 
     <select id="getUnUploadYlqxSqId" parameterType="String" resultType="String">
-        select SQID from ${tableName} where SQID is not NULL and UP_STATE <![CDATA[ <> ]]> '1' or UP_STATE is null
+        select SQID from ${tableName} where UP_STATE = '0' and SQID is not NULL
     </select>
 
     <!-- 医疗器械生产许可（备案） -->
     <select id="getYlqxscxkBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxscxk">
-        select t.* from T_API_JQYLQXJG_YLQXSCXK t where t.SQID=#{sqId}
+        select t.* from T_API_JQYLQXJG_YLQXSCXK t where t.SQID=#{sqId} and t.UP_STATE = '0'
     </select>
 
     <!-- 医疗器械生产许可（备案）- 子表 产品列表 -->
@@ -40,12 +40,12 @@
 
     <!-- 医疗器械经营许可（备案） -->
     <select id="getYlqxjyxkBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjyxk">
-        select t.* from T_API_JQYLQXJG_YLQXJYXK t where t.SQID=#{sqId}
+        select t.* from T_API_JQYLQXJG_YLQXJYXK t where t.SQID=#{sqId} and t.UP_STATE = '0'
     </select>
 
     <!-- 医疗器械委托生产备案 -->
     <select id="getYlqxwtscbaBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwtscba">
-        select t.* from T_API_JQYLQXJG_YLQXWTSCBA t where t.SQID=#{sqId}
+        select t.* from T_API_JQYLQXJG_YLQXWTSCBA t where t.SQID=#{sqId} and t.UP_STATE = '0'
     </select>
 
     <!-- 医疗器械委托生产备案 - 子表 产品列表 -->
@@ -57,14 +57,14 @@
     <select id="getYlqxwljyfwdsfBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwljyfwdsf">
         select QYMC,SHXYDM,BABH,ZS,BGCS,FDDBR,ZYFZR,ZLAQGLR,WZMC,WLKHDYYCXM,concat('<![CDATA[',concat(WZYM,']]>')) WZYM,
         WZDZ_IP,concat('<![CDATA[',concat(FWQCFDZ,']]>')) FWQCFDZ,FJYXHLWXXFWBABH,QYSZS,BABM,BARQ,BZ
-        from T_API_JQYLQXJG_YLQXWLJYFWDSF where SQID=#{sqId}
+        from T_API_JQYLQXJG_YLQXWLJYFWDSF where SQID=#{sqId} and UP_STATE = '0'
     </select>
 
     <!-- 医疗器械网络销售备案 -->
     <select id="getYlqxwlxsbaBySqId" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxwlxsba">
         select WLXSLX,QYMC,SHXYDM,ZS,JYCS,KFDZ,ZTYT,XKZBH,HLWYPXXFWZGZSBH,JYFW,FDDBR,QYFZR,QYSZS,WZMC,WLKHDYYCXM,concat('<![CDATA[',concat(WZYM,']]>')) WZYM,
         WZDZ_IP,concat('<![CDATA[',concat(FWQCFDZ,']]>')) FWQCFDZ,FJYXHLWXXFWBABH,BZ
-        from T_API_JQYLQXJG_YLQXWLXSBA where SQID=#{sqId}
+        from T_API_JQYLQXJG_YLQXWLXSBA where SQID=#{sqId} and UP_STATE = '0'
     </select>
 
     <!-- 医疗器械网络销售备案 - 子表 入驻类第三方平台信息 -->
@@ -76,7 +76,7 @@
 
     <!-- 任务书基本信息 -->
     <select id="getYlqxjcRwsjbxxLst" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjcRwsjbxx">
-          select t.* from T_API_YLQXSCQYJC_RWSJBXX t where t.ZJ is not NULL and t.UP_STATE <![CDATA[ <> ]]> '1' or t.UP_STATE is null
+          select t.* from T_API_YLQXSCQYJC_RWSJBXX t where t.ZJ is not NULL and t.UP_STATE = '0' or t.UP_STATE is null
     </select>
 
     <!-- 检查产品信息 -->
@@ -92,5 +92,15 @@
     <!-- 任务检查组信息 -->
     <select id="getYlqxjcJczByRwsbh" parameterType="String" resultType="com.xxl.job.executor.service.jobhandler.model.MedInstruYlqxjcJcz">
         select t.* from T_API_YLQXSCQYJC_JCZ t where t.RWSBH = #{rwsbh}
+    </select>
+
+    <!-- ******************************************************************************** -->
+
+    <select id="getUnUploadYpckxszm" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.YPCKXSZMModel">
+        select t.* from T_EXC_GJ_YPCKXSZM t where t.UP_STATE = '0'
+    </select>
+
+    <select id="getYpckxszmJkgjBySqId" parameterType="string" resultType="com.xxl.job.executor.service.jobhandler.model.nationalShare.YPCKXSZMJKGJModel">
+        select t.* from T_EXC_GJ_YPCKXSZM_JKGJ t where t.SQID = #{sqId}
     </select>
 </mapper>

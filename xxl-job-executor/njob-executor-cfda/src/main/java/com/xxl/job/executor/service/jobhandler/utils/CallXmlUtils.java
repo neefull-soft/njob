@@ -1,9 +1,13 @@
 package com.xxl.job.executor.service.jobhandler.utils;
 
+import com.xxl.job.core.log.XxlJobLogger;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.xml.rpc.ServiceException;
+import java.rmi.RemoteException;
 
 /**
  * @program: xxl-job
@@ -17,33 +21,51 @@ public class CallXmlUtils {
     /**
      * 医疗器械生产许可请求webservice
      * @param url
-     * @param dbName
+     * @param xmlPacket
      * @param account
      * @param pwd
      * @param xmlStr
      * @return
      */
-    public static String sendCallRequest(String url,String dbName,String account,String pwd,String xmlStr){
-        String response = "";
-        try {
-            Service service = new Service();
-            Call call = (Call) service.createCall();
-            call.setTargetEndpointAddress(url);
-            //命名空间和调用接口的方法名
-            call.setOperationName(new javax.xml.namespace.QName("http://impl.dataHandle.medicom.com/", "CFDA_CG_DATACOL"));
-            call.setUseSOAPAction(true);
-            call.addParameter("arg3",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
-            call.addParameter("arg2",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
-            call.addParameter("arg1",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
-            call.addParameter("arg0",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
-            // 设置返回类型
-            call.setReturnClass(String.class);
-            // 使用invoke调用方法，Object数据放传入的参数值（可多个）
-            response = (String) call.invoke(new Object[] {dbName, account,pwd,xmlStr});
-            System.out.println(response);
-        }catch (Exception e){
-            log.error(e.getMessage());
-        }
+    public static String sendCallRequest(String url,String xmlPacket,String account,String pwd,String xmlStr) throws ServiceException, RemoteException {
+        XxlJobLogger.log("请求报文：" + xmlPacket);
+        String response = "";    //请求结果
+
+        Service service = new Service();
+        Call call = (Call) service.createCall();
+        call.setTargetEndpointAddress(url);
+        //命名空间和调用接口的方法名
+        call.setOperationName(new javax.xml.namespace.QName("http://impl.dataHandle.medicom.com/", "CFDA_CG_DATACOL"));
+        call.setUseSOAPAction(true);
+        call.addParameter("arg3",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        call.addParameter("arg2",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        call.addParameter("arg1",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        call.addParameter("arg0",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        // 设置返回类型
+        call.setReturnClass(String.class);
+        // 使用invoke调用方法，Object数据放传入的参数值（可多个）
+        response = (String) call.invoke(new Object[] {xmlPacket, account,pwd,xmlStr});
+        return response;
+    }
+
+    public static String sendCallRequestForNMPA(String url,String xmlPacket,String account,String pwd,String xmlStr) throws ServiceException, RemoteException {
+        XxlJobLogger.log("请求报文：" + xmlPacket);
+        String response = "";    //请求结果
+
+        Service service = new Service();
+        Call call = (Call) service.createCall();
+        call.setTargetEndpointAddress(url);
+        //命名空间和调用接口的方法名
+        call.setOperationName(new javax.xml.namespace.QName("http://impl.dataHandle.medicom.com/", "NMPA_CG_DATACOL"));
+        call.setUseSOAPAction(true);
+        call.addParameter("arg3",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        call.addParameter("arg2",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        call.addParameter("arg1",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        call.addParameter("arg0",org.apache.axis.encoding.XMLType.XSD_STRING,javax.xml.rpc.ParameterMode.IN);//可多个.addParameterMode
+        // 设置返回类型
+        call.setReturnClass(String.class);
+        // 使用invoke调用方法，Object数据放传入的参数值（可多个）
+        response = (String) call.invoke(new Object[] {xmlPacket, account,pwd,xmlStr});
         return response;
     }
 

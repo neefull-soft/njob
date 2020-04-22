@@ -1,6 +1,7 @@
 package com.xxl.job.executor.service.jobhandler.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 /**
  * @program: xxl-job
@@ -9,14 +10,18 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  **/
 @XStreamAlias("subDataNode")
 public class MedInstruYlqxscxkCpZb implements java.io.Serializable{
-    private String ZZJGDM;
-    private String CPMC;
-    private String ZCZH;
-    private String CPLB;
-    private String SFSTSC;
-    private String WTQX;
-    private String DZRQ;
-    private String BZ;
+    private String ZZJGDM="";
+    private String CPMC="";
+    private String ZCZH="";
+    private String CPLB="";
+    private String SFSTSC="";
+    private String WTQX="";
+    private String DZRQ="";
+    private String BZ="";
+
+    @XStreamAsAttribute()
+    @XStreamAlias("dbcn")
+    private String dbcn="医疗器械许可证登记表";
 
     public String getZZJGDM() {
         return ZZJGDM;

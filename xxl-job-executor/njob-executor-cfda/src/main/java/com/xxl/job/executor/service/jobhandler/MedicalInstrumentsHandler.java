@@ -30,6 +30,8 @@ public class MedicalInstrumentsHandler extends IJobHandler {
     MedicalInstrumentsYlqxwlxsbaStrategy medicalInstrumentsYlqxwlxsbaStrategy;
     @Autowired
     MedicalInstrumentsYlqxscqyjcStrategy medicalInstrumentsYlqxscqyjcStrategy;
+    @Autowired
+    MedicalInstrumentsYpckxszmStrategy medicalInstrumentsYpckxszmStrategy;
 
     /**
      * @param param 传进来参数，代表的是数据类型
@@ -53,6 +55,8 @@ public class MedicalInstrumentsHandler extends IJobHandler {
                     new MedicalInstrumentsContent(medicalInstrumentsYlqxwlxsbaStrategy).doAction();
                 }else if("医疗器械生产企业检查".equals(param)){
                     new MedicalInstrumentsContent(medicalInstrumentsYlqxscqyjcStrategy).doAction();
+                }else if("药品出口销售证明".equals(param)){
+                    new MedicalInstrumentsContent(medicalInstrumentsYpckxszmStrategy).doAction();
                 }
             }
         } catch (Exception e) {

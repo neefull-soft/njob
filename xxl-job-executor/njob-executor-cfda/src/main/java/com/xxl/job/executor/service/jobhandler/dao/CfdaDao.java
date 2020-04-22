@@ -14,12 +14,26 @@ public interface CfdaDao {
     public String getMaxDate(@Param("tableName") String tableName, @Param("dataFieldName") String dataFieldName, @Param("pattern") String pattern);
 
     /**
+     * 获取数据库最大主键值
+     * @param tableName
+     * @param primaryKeyName
+     * @return
+     */
+    public Integer getMaxPrimaryKeyNumber(@Param("tableName") String tableName, @Param("primaryKeyName") String primaryKeyName);
+
+    /**
      * 保存数据 单条保存
      * 根据不同类型，自行实现处理方法
      *
      * @return
      */
     public int save(@Param("tableName") String tableName, @Param("params") Map<String, String> params);
+
+    public int saveYlqxscqy(Map<String, String> params);
+
+    public int saveYlqxjyqy(Map<String, String> params);
+
+    public int saveGcylqx(Map<String, String> params);
 
     /**
      * 批量插入数据
@@ -33,5 +47,5 @@ public interface CfdaDao {
     /**
      *
      */
-    public List getYlqxscba(String tableName);
+//    public List getYlqxscba(String tableName);
 }

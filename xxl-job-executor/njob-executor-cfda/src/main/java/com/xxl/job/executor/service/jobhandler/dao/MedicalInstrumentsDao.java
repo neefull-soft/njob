@@ -1,6 +1,8 @@
 package com.xxl.job.executor.service.jobhandler.dao;
 
 import com.xxl.job.executor.service.jobhandler.model.*;
+import com.xxl.job.executor.service.jobhandler.model.nationalShare.YPCKXSZMJKGJModel;
+import com.xxl.job.executor.service.jobhandler.model.nationalShare.YPCKXSZMModel;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -119,4 +121,17 @@ public interface MedicalInstrumentsDao {
      * @return
      */
     public List<MedInstruYlqxjcJcz> getYlqxjcJczByRwsbh(String rwsbh);
+
+    /**
+     * 获取未提交的药品出口销售证明数据
+     * @return
+     */
+    public List<YPCKXSZMModel> getUnUploadYpckxszm();
+
+    /**
+     * 根据sqId获取关联的进口国家数据
+     * @param sqId
+     * @return
+     */
+    public List<YPCKXSZMJKGJModel> getYpckxszmJkgjBySqId(String sqId);
 }

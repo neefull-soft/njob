@@ -19,8 +19,21 @@ public class CfdaServiceImpl implements CfdaService {
     }
 
     @Override
+    public Integer getMaxPrimaryKeyNumber(String tableName, String primaryKeyName) {
+        return cfdaDao.getMaxPrimaryKeyNumber(tableName,primaryKeyName);
+    }
+
+    @Override
     public int save(String tableName, Map<String, String> params) {
-        return cfdaDao.save(tableName, params);
+        if(tableName.equals("t_share_ylqxscqy")){
+            return cfdaDao.saveYlqxscqy(params);
+        }else if(tableName.equals("t_share_ylqxjyqy")){
+            return cfdaDao.saveYlqxjyqy(params);
+        }else if(tableName.equals("t_share_gcylqx")){
+            return cfdaDao.saveGcylqx(params);
+        }else{
+            return cfdaDao.save(tableName, params);
+        }
     }
 
     @Override
